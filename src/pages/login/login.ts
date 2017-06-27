@@ -23,4 +23,8 @@ export class LoginPage {
     this.navParams.get("pass");
   }
 
+  ionViewDidLoad(){
+    document.getElementById('nombre').innerHTML = this.navParams.get("name");
+    document.getElementById('clave').innerHTML = this.navParams.get("pass");
+  }
 }
