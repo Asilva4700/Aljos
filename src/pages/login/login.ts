@@ -14,17 +14,14 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  nombre: string;
+  clave: string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public alertCtrl: AlertController) {
-
-    this.navParams.get("name");
-    this.navParams.get("pass");
-  }
+              public alertCtrl: AlertController) {}
 
   ionViewDidLoad(){
-    document.getElementById('nombre').innerHTML = this.navParams.get("name");
-    document.getElementById('clave').innerHTML = this.navParams.get("pass");
+    this.nombre=this.navParams.get("name");
+    this.clave=this.navParams.get("pass");
   }
 }
