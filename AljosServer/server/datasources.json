@@ -1,0 +1,18 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "aljos",
+    "name": "db",
+    "connector": "mysql",
+    "user": "root"
+  },
+  "MySql": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "aljos",
+    "name": "MySql",
+    "connector": "mysql",
+    "user": "root"
+  }
+}
