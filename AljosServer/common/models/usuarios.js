@@ -8,12 +8,38 @@ module.exports = function(Usuarios) {
         cb(null, {ok:true,data:obj});
       }
     });
-  }
+  };
   Usuarios.remoteMethod('listar',{
     accepts:[],
     returns: {arg: 'data', type: 'object'},
     ttp: {path: '/#!/Usuario/listar', verb: 'post'}
-  })
+  });
+  Usuarios.login = function(user, pass, cb){
+    var fields={
+      id:false
+    };
+    Usuarios.findOne({where:{nombre:user},fields:fields}, function(error,obj){
+        if(error){cb(null,{ok:false,data:error});}
+        else{
+          if(obj!=null){
+            if(obj.nombre==user && obj.password==pass){
+              cb(null,{ok:true,data:obj});
+            }else{
+              cb(null,{ok:true,data:"usuario o contraseña incorreto"});
+            }
+          }else{
+            cb(null,{ok:true,data:"usuario o contraseña incorreto"});
+          }
+        }
+    });
+  };
+  Usuarios.remoteMethod('login',{
+    accepts:[
+      {arg: 'usuario', type: 'string', required: true},
+      {arg: 'password', type: 'string', required: true}],
+    returns: {arg: 'data', type: 'object'},
+    ttp: {path: '/#!/Usuario/login', verb: 'post'}
+  });
   Usuarios.disableRemoteMethodByName("count");
   Usuarios.disableRemoteMethodByName("patchOrCreate");
   Usuarios.disableRemoteMethodByName("replaceById");
