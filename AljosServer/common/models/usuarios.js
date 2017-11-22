@@ -23,12 +23,12 @@ module.exports = function(Usuarios) {
         else{
           if(obj!=null){
             if(obj.nombre==user && obj.password==pass){
-              cb(null,{ok:true,data:obj});
+              cb(null,{ok:true,logeado:true,data:obj});
             }else{
-              cb(null,{ok:true,data:"usuario o contraseña incorreto"});
+              cb(null,{ok:true,logeado:false,data:"usuario o contraseña incorreto"});
             }
           }else{
-            cb(null,{ok:true,data:"usuario o contraseña incorreto"});
+            cb(null,{ok:true,logeado:false,data:"usuario o contraseña incorreto"});
           }
         }
     });
