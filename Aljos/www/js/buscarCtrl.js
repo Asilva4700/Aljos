@@ -27,7 +27,7 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http) {
       if(res!=null){
         console.log("asd");
         server_get_login($http,function(data){
-          console.log(data.data);
+          console.log(data.data.data);
         },function(){},res.user,res.pass);
         console.log('Tapped!', res.user, 'y ', res.pass);
       }
