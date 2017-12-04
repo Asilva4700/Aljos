@@ -36,7 +36,59 @@
     "dataSource": "MySql",
     "public": false
   },
-  "Usuarios": {
+  "Usuario": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Calificacion": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Cotizacion": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Encuesta": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Empresa": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Favorito": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Imagen": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Pago": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Pregunta": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Productoservicio": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Publicacion": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Visita": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Tipousuario": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Local": {
     "dataSource": "MySql",
     "public": true
   }

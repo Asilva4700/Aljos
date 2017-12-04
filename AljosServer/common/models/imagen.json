@@ -1,5 +1,5 @@
 {
-  "name": "Usuarios",
+  "name": "Imagen",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -13,7 +13,7 @@
   },
   "mysql": {
     "schema": "aljos",
-    "table": "Usuarios"
+    "table": "imagen"
   },
   "properties": {
     "id": {
@@ -32,31 +32,61 @@
         "nullable": "N"
       }
     },
-    "nombre": {
+    "idpublicacion": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "idPublicacion",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "Y"
+      }
+    },
+    "idusuario": {
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "idUsuario",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "Y"
+      }
+    },
+    "ruta": {
       "type": "String",
       "required": true,
-      "length": 45,
+      "length": 400,
       "precision": null,
       "scale": null,
       "mysql": {
-        "columnName": "nombre",
+        "columnName": "ruta",
         "dataType": "varchar",
-        "dataLength": 45,
+        "dataLength": 400,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "N"
       }
     },
-    "password": {
-      "type": "String",
+    "fecha": {
+      "type": "Date",
       "required": true,
-      "length": 45,
+      "length": null,
       "precision": null,
       "scale": null,
       "mysql": {
-        "columnName": "Password",
-        "dataType": "varchar",
-        "dataLength": 45,
+        "columnName": "fecha",
+        "dataType": "date",
+        "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "N"
