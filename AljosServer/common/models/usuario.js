@@ -38,6 +38,42 @@ module.exports = function(Usuario) {
       {arg: 'password', type: 'string', required: true}],
     returns: {arg: 'data', type: 'object'}
   });
+  Usuario.registrar = function(correoUsuario, contraseñaUsuario, rutUsuario, numeroTelefonoUsuario, direccionUsuario, nombreUsuario, tipoUsuario, nombreEmpresa, rutEmpresa, paginaWeb, correoEmpresa, cb){
+    var user={
+      correo: correoUsuario,
+      contrasena: contraseñaUsuario,
+      rut: rutUsuario,
+      numerotelefono: numeroTelefonoUsuario,
+      direccion: direccionUsuario,
+      fecha: "01/01/2017",
+      baneado: 0,
+      nombre: nombreUsuario,
+      idtipousuario: tipoUsuario
+    };
+    Usuario.create(user,function(error,obj){
+      console.log(error);
+      if(error){cb(null,{ok:false,data:error});}
+      else{
+        cb(null,{ok:true});
+      }
+    })
+  };
+  Usuario.remoteMethod('registrar',{
+    accepts:[
+      {arg: 'correo', type: 'string', required: true},
+      {arg: 'contraseña', type: 'string', required: true},
+      {arg: 'rut', type: 'string', required: true},
+      {arg: 'numerotelefono', type: 'number', required: true},
+      {arg: 'direccion', type: 'string', required: true},
+      {arg: 'nombre', type: 'string', required: true},
+      {arg: 'tipo', type: 'number', required: true},
+      {arg: 'nombreEmpresa', type: 'string', required: false},
+      {arg: 'rutEmpresa', type: 'string', required: false},
+      {arg: 'paginaWeb', type: 'string', required: false},
+      {arg: 'correoEmpresa', type: 'string', required: false}
+    ],
+    returns: {arg: 'data', type: 'object'}
+  });
   Usuario.disableRemoteMethodByName("count");
   Usuario.disableRemoteMethodByName("patchOrCreate");
   Usuario.disableRemoteMethodByName("replaceById");

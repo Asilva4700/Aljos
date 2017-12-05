@@ -36,10 +36,6 @@
     "dataSource": "MySql",
     "public": false
   },
-  "Usuario": {
-    "dataSource": "MySql",
-    "public": true
-  },
   "Calificacion": {
     "dataSource": "MySql",
     "public": true
@@ -89,6 +85,10 @@
     "public": true
   },
   "Local": {
+    "dataSource": "MySql",
+    "public": true
+  },
+  "Usuario": {
     "dataSource": "MySql",
     "public": true
   }
