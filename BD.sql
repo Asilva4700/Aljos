@@ -16,67 +16,21 @@ CREATE SCHEMA IF NOT EXISTS `aljos` DEFAULT CHARACTER SET latin1 ;
 USE `aljos` ;
 
 -- -----------------------------------------------------
--- Table `aljos`.`tipoUsuario`
+-- Table `aljos`.`ACL`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `aljos`.`tipoUsuario` ;
+DROP TABLE IF EXISTS `aljos`.`ACL` ;
 
-CREATE TABLE IF NOT EXISTS `aljos`.`tipoUsuario` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `tipo` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `aljos`.`ACL` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `model` VARCHAR(512) NULL DEFAULT NULL,
+  `property` VARCHAR(512) NULL DEFAULT NULL,
+  `accessType` VARCHAR(512) NULL DEFAULT NULL,
+  `permission` VARCHAR(512) NULL DEFAULT NULL,
+  `principalType` VARCHAR(512) NULL DEFAULT NULL,
+  `principalId` VARCHAR(512) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `aljos`.`usuario`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `aljos`.`usuario` ;
-
-CREATE TABLE IF NOT EXISTS `aljos`.`usuario` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `correo` VARCHAR(30) NOT NULL,
-  `contrasena` VARCHAR(15) NOT NULL,
-  `rut` VARCHAR(11) NOT NULL,
-  `numeroTelefono` INT(11) NOT NULL,
-  `direccion` VARCHAR(80) NOT NULL,
-  `fecha` DATE NOT NULL,
-  `baneado` TINYINT(1) NOT NULL,
-  `nombre` VARCHAR(25) NOT NULL,
-  `idTipoUsuario` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_usuario_tipoUsuario1_idx` (`idTipoUsuario` ASC),
-  CONSTRAINT `fk_usuario_tipoUsuario1`
-    FOREIGN KEY (`idTipoUsuario`)
-    REFERENCES `aljos`.`tipoUsuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `aljos`.`empresa`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `aljos`.`empresa` ;
-
-CREATE TABLE IF NOT EXISTS `aljos`.`empresa` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` INT(11) NOT NULL,
-  `nombre` VARCHAR(25) NOT NULL,
-  `rut` VARCHAR(11) NOT NULL,
-  `paginaWeb` VARCHAR(25) NOT NULL,
-  `correo` VARCHAR(30) NOT NULL,
-  `fecha` DATE NOT NULL,
-  `advertencias` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `idUsuario` (`idUsuario` ASC),
-  CONSTRAINT `empresa_ibfk_1`
-    FOREIGN KEY (`idUsuario`)
-    REFERENCES `aljos`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
@@ -109,13 +63,78 @@ CREATE TABLE IF NOT EXISTS `aljos`.`productoservicio` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(50) NOT NULL,
   `precio` INT(11) NOT NULL,
-  `idLocal` INT(11) NULL,
-  `menu` TINYINT NOT NULL,
+  `idLocal` INT(11) NULL DEFAULT NULL,
+  `menu` TINYINT(4) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_productoservicio_local1_idx` (`idLocal` ASC),
   CONSTRAINT `fk_productoservicio_local1`
     FOREIGN KEY (`idLocal`)
     REFERENCES `aljos`.`local` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `aljos`.`tipoUsuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aljos`.`tipoUsuario` ;
+
+CREATE TABLE IF NOT EXISTS `aljos`.`tipoUsuario` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `aljos`.`usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aljos`.`usuario` ;
+
+CREATE TABLE IF NOT EXISTS `aljos`.`usuario` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `correo` VARCHAR(100) NOT NULL,
+  `contrasena` VARCHAR(15) NOT NULL,
+  `rut` VARCHAR(11) NOT NULL,
+  `numeroTelefono` INT(11) NOT NULL,
+  `direccion` VARCHAR(80) NOT NULL,
+  `fecha` DATE NOT NULL,
+  `baneado` TINYINT(1) NOT NULL,
+  `nombre` VARCHAR(25) NOT NULL,
+  `idTipoUsuario` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_usuario_tipoUsuario1_idx` (`idTipoUsuario` ASC),
+  CONSTRAINT `fk_usuario_tipoUsuario1`
+    FOREIGN KEY (`idTipoUsuario`)
+    REFERENCES `aljos`.`tipoUsuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `aljos`.`empresa`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aljos`.`empresa` ;
+
+CREATE TABLE IF NOT EXISTS `aljos`.`empresa` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` INT(11) NOT NULL,
+  `nombre` VARCHAR(25) NOT NULL,
+  `rut` VARCHAR(11) NOT NULL,
+  `paginaWeb` VARCHAR(25) NOT NULL,
+  `correo` VARCHAR(30) NOT NULL,
+  `fecha` DATE NOT NULL,
+  `advertencias` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `idUsuario` (`idUsuario` ASC),
+  CONSTRAINT `empresa_ibfk_1`
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `aljos`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -133,18 +152,18 @@ CREATE TABLE IF NOT EXISTS `aljos`.`publicacion` (
   `fecha` DATE NOT NULL,
   `descripcion` VARCHAR(400) NOT NULL,
   `idProducto` INT(11) NOT NULL,
-  `cantidad` INT NOT NULL,
+  `cantidad` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `idEmpresa` (`idEmpresa` ASC),
   INDEX `fk_publicacion_productoservicio1_idx` (`idProducto` ASC),
-  CONSTRAINT `publicacion_ibfk_1`
-    FOREIGN KEY (`idEmpresa`)
-    REFERENCES `aljos`.`empresa` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_publicacion_productoservicio1`
     FOREIGN KEY (`idProducto`)
     REFERENCES `aljos`.`productoservicio` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `publicacion_ibfk_1`
+    FOREIGN KEY (`idEmpresa`)
+    REFERENCES `aljos`.`empresa` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -218,6 +237,29 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `aljos`.`encuesta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aljos`.`encuesta` ;
+
+CREATE TABLE IF NOT EXISTS `aljos`.`encuesta` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `pregunta` VARCHAR(100) NOT NULL,
+  `Encuestacol` VARCHAR(100) NOT NULL,
+  `numeroEncuesta` INT(11) NOT NULL,
+  `usuario_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `Encuestacol_UNIQUE` (`Encuestacol` ASC),
+  INDEX `fk_Encuesta_usuario1_idx` (`usuario_id` ASC),
+  CONSTRAINT `fk_Encuesta_usuario1`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `aljos`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
 -- Table `aljos`.`favorito`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `aljos`.`favorito` ;
@@ -280,6 +322,33 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `aljos`.`pago`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `aljos`.`pago` ;
+
+CREATE TABLE IF NOT EXISTS `aljos`.`pago` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `estado` VARCHAR(45) NOT NULL,
+  `usuario_id` INT(11) NOT NULL,
+  `cotizacion_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Pago_usuario1_idx` (`usuario_id` ASC),
+  INDEX `fk_Pago_cotizacion1_idx` (`cotizacion_id` ASC),
+  CONSTRAINT `fk_Pago_cotizacion1`
+    FOREIGN KEY (`cotizacion_id`)
+    REFERENCES `aljos`.`cotizacion` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pago_usuario1`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `aljos`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
 -- Table `aljos`.`pregunta`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `aljos`.`pregunta` ;
@@ -310,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `aljos`.`visita` (
   `idPublicacion` INT(11) NOT NULL,
   `idUsuario` INT(11) NOT NULL,
   `fecha` DATE NOT NULL,
-  `cantidad` INT NOT NULL,
+  `cantidad` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `idPublicacion` (`idPublicacion` ASC),
   INDEX `idUsuario` (`idUsuario` ASC),
@@ -326,54 +395,6 @@ CREATE TABLE IF NOT EXISTS `aljos`.`visita` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `aljos`.`pago`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `aljos`.`pago` ;
-
-CREATE TABLE IF NOT EXISTS `aljos`.`pago` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `estado` VARCHAR(45) NOT NULL,
-  `usuario_id` INT(11) NOT NULL,
-  `cotizacion_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Pago_usuario1_idx` (`usuario_id` ASC),
-  INDEX `fk_Pago_cotizacion1_idx` (`cotizacion_id` ASC),
-  CONSTRAINT `fk_Pago_usuario1`
-    FOREIGN KEY (`usuario_id`)
-    REFERENCES `aljos`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pago_cotizacion1`
-    FOREIGN KEY (`cotizacion_id`)
-    REFERENCES `aljos`.`cotizacion` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `aljos`.`encuesta`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `aljos`.`encuesta` ;
-
-CREATE TABLE IF NOT EXISTS `aljos`.`encuesta` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `pregunta` VARCHAR(100) NOT NULL,
-  `Encuestacol` VARCHAR(100) NOT NULL,
-  `numeroEncuesta` INT NOT NULL,
-  `usuario_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `Encuestacol_UNIQUE` (`Encuestacol` ASC),
-  INDEX `fk_Encuesta_usuario1_idx` (`usuario_id` ASC),
-  CONSTRAINT `fk_Encuesta_usuario1`
-    FOREIGN KEY (`usuario_id`)
-    REFERENCES `aljos`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

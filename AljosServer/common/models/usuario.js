@@ -1,16 +1,25 @@
 'use strict';
 
 module.exports = function(Usuario) {
-  Usuario.listar = function(cb){
-    Usuario.find({}, function(error,obj){
+  var app = require('../../server/server');
+  Usuario.cargar = function(correo,cb){
+    Usuario.findOne({where:{correo:correo}}, function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
-        cb(null, {ok:true,data:obj});
+        var data=obj;
+        var Empresa=app.models.Empresa;
+        Empresa.findOne({where:{idusuario:data.id}},function(error,obj){
+          if(error){cb(null,{ok:false,data:error});}
+          else{
+            data.Empresa=obj;
+            cb(null, {ok:true,data:data});
+          }
+        });
       }
     });
   };
-  Usuario.remoteMethod('listar',{
-    accepts:[],
+  Usuario.remoteMethod('cargar',{
+    accepts:[{arg: 'correo', type: 'string', required: true}],
     returns: {arg: 'data', type: 'object'}
   });
   Usuario.login = function(user, pass, cb){
@@ -38,25 +47,49 @@ module.exports = function(Usuario) {
       {arg: 'password', type: 'string', required: true}],
     returns: {arg: 'data', type: 'object'}
   });
-  Usuario.registrar = function(correoUsuario, contraseñaUsuario, rutUsuario, numeroTelefonoUsuario, direccionUsuario, nombreUsuario, tipoUsuario, nombreEmpresa, rutEmpresa, paginaWeb, correoEmpresa, cb){
-    var user={
-      correo: correoUsuario,
-      contrasena: contraseñaUsuario,
-      rut: rutUsuario,
-      numerotelefono: numeroTelefonoUsuario,
-      direccion: direccionUsuario,
-      fecha: "01/01/2017",
-      baneado: 0,
-      nombre: nombreUsuario,
-      idtipousuario: tipoUsuario
-    };
-    Usuario.create(user,function(error,obj){
-      console.log(error);
-      if(error){cb(null,{ok:false,data:error});}
+  Usuario.registrar = function(correoUsuario, contraseñaUsuario, rutUsuario, numeroTelefonoUsuario, direccionUsuario, nombreUsuario, tipoUsuario, nombreEmpresa, rutEmpresa, paginaWebEmpresa, correoEmpresa, cb){
+    Usuario.findOne({where:{or:[{correo:correoUsuario},{rut:rutUsuario}]}},function(error,obj){
+      if(error){cb(null,{ok:false,registrado:false,data:error});}
       else{
-        cb(null,{ok:true});
+        if(obj==null){
+          var user={
+            correo: correoUsuario,
+            contrasena: contraseñaUsuario,
+            rut: rutUsuario,
+            numerotelefono: numeroTelefonoUsuario,
+            direccion: direccionUsuario,
+            fecha: "01/01/2017",
+            baneado: 0,
+            nombre: nombreUsuario,
+            idtipousuario: tipoUsuario
+          };
+          Usuario.create(user,function(error,obj){
+            var data=obj;
+            if(error){cb(null,{ok:false,registrado:false,data:error});}
+            else{
+              var Empresa=app.models.Empresa;
+              var empresa={
+                idusuario:data.id,
+                nombre:nombreEmpresa,
+                rut:rutEmpresa,
+                paginaweb:paginaWebEmpresa,
+                fecha: "01/01/2017",
+                advertencias: 0,
+                correo:correoEmpresa
+              }
+              Empresa.create(empresa,function(error,obj){
+                if(error){cb(null,{ok:false,registrado:false,data:error});}
+                else{
+                  cb(null,{ok:true,registrado:true,data:{obj,data}});
+                }
+              });
+            }
+          });
+        }else{
+          cb(null,{ok:true,registrado:false,data:"Usuario ya existe"});
+        }
       }
-    })
+    });
   };
   Usuario.remoteMethod('registrar',{
     accepts:[
@@ -72,6 +105,41 @@ module.exports = function(Usuario) {
       {arg: 'paginaWeb', type: 'string', required: false},
       {arg: 'correoEmpresa', type: 'string', required: false}
     ],
+    returns: {arg: 'data', type: 'object'}
+  });
+  Usuario.editar=function(correo,contraseñaUsuario, numeroTelefonoUsuario, direccionUsuario, nombreUsuario, tipoUsuario, paginaWebEmpresa, correoEmpresa, cb){
+    var usuario={
+      contrasena:contraseñaUsuario,
+      nombre:nombreUsuario,
+      numerotelefono:numeroTelefonoUsuario,
+      direccion:direccionUsuario,
+      tipo:tipoUsuario
+    };
+    Usuario.updateAll({correo:correo},usuario,function(error,obj){
+      if(error){cb(null,{ok:false,data:error});}
+      else{
+        cb(null,{ok:true,data:obj});
+      }
+    });
+  }
+  Usuario.remoteMethod('editar',{
+    accepts:[
+      {arg: 'correo', type: 'string', required: true},
+      {arg: 'contraseña', type: 'string', required: true},
+      {arg: 'numerotelefono', type: 'number', required: true},
+      {arg: 'direccion', type: 'string', required: true},
+      {arg: 'nombre', type: 'string', required: true},
+      {arg: 'tipo', type: 'number', required: true},
+      {arg: 'paginaWeb', type: 'string', required: false},
+      {arg: 'correoEmpresa', type: 'string', required: false}
+    ],
+    returns: {arg: 'data', type: 'object'}
+  });
+  Usuario.estadisticas=function(cb){
+    cb(null,{ok:true,data:falta});
+  }
+  Usuario.remoteMethod('estadisticas',{
+    accepts:[],
     returns: {arg: 'data', type: 'object'}
   });
   Usuario.disableRemoteMethodByName("count");
