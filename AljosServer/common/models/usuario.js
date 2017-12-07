@@ -107,7 +107,7 @@ module.exports = function(Usuario) {
     ],
     returns: {arg: 'data', type: 'object'}
   });
-  Usuario.editar=function(correo,contraseñaUsuario, numeroTelefonoUsuario, direccionUsuario, nombreUsuario, tipoUsuario, paginaWebEmpresa, correoEmpresa, cb){
+  Usuario.editar=function(id,correo,contraseñaUsuario, numeroTelefonoUsuario, direccionUsuario, nombreUsuario, tipoUsuario, paginaWebEmpresa, correoEmpresa, cb){
     var usuario={
       contrasena:contraseñaUsuario,
       nombre:nombreUsuario,
@@ -115,15 +115,27 @@ module.exports = function(Usuario) {
       direccion:direccionUsuario,
       tipo:tipoUsuario
     };
+    var empresa={
+      paginaweb:paginaWebEmpresa,
+      correo:correoEmpresa
+    };
+    var Empresa=app.models.Empresa;
     Usuario.updateAll({correo:correo},usuario,function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
-        cb(null,{ok:true,data:obj});
+        var datausuario=obj;
+        Empresa.updateAll({idusuario:id},empresa,function(error,obj){
+          if(error){cb(null,{ok:false,data:error});}
+          else{
+            cb(null,{ok:true,data:obj,datausuario});
+          }
+        });
       }
     });
   }
   Usuario.remoteMethod('editar',{
     accepts:[
+      {arg: 'id', type: 'number', required: true},
       {arg: 'correo', type: 'string', required: true},
       {arg: 'contraseña', type: 'string', required: true},
       {arg: 'numerotelefono', type: 'number', required: true},

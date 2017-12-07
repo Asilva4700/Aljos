@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `aljos`.`empresa` (
   `idUsuario` INT(11) NOT NULL,
   `nombre` VARCHAR(25) NOT NULL,
   `rut` VARCHAR(11) NOT NULL,
-  `paginaWeb` VARCHAR(25) NOT NULL,
+  `paginaWeb` VARCHAR(100) NOT NULL,
   `correo` VARCHAR(30) NOT NULL,
   `fecha` DATE NOT NULL,
   `advertencias` INT(11) NOT NULL,

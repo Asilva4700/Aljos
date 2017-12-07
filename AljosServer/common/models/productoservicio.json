@@ -94,7 +94,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "local": {
+      "type": "belongsTo",
+      "model": "Local",
+      "foreignKey": "idlocal"
+    }
+  },
   "acls": [],
   "methods": {}
 }
