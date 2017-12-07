@@ -22,15 +22,15 @@ module.exports = function(Usuario) {
     accepts:[{arg: 'correo', type: 'string', required: true}],
     returns: {arg: 'data', type: 'object'}
   });
-  Usuario.login = function(user, pass, cb){
+  Usuario.login = function(correo, pass, cb){
     var fields={
       id:false
     };
-    Usuario.findOne({where:{nombre:user},fields:fields}, function(error,obj){
+    Usuario.findOne({where:{correo:correo},fields:fields}, function(error,obj){
         if(error){cb(null,{ok:false,data:error});}
         else{
           if(obj!=null){
-            if(obj.nombre==user && obj.password==pass){
+            if(obj.correo==correo && obj.contrasena==pass){
               cb(null,{ok:true,logeado:true,data:obj});
             }else{
               cb(null,{ok:true,logeado:false,data:"usuario o contraseña incorreto"});

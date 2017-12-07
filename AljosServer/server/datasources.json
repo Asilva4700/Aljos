@@ -11,7 +11,7 @@
     "host": "localhost",
     "port": 3306,
     "database": "aljos",
-    "password": "12345678",
+    "password": "",
     "name": "MySql",
     "connector": "mysql",
     "user": "root"
