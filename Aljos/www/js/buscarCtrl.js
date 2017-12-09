@@ -25,9 +25,18 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http) {
     });
     myPopup.then(function(res) {
       if(res!=null){
-        console.log("asd");
         server_get_login($http,function(data){
-          console.log(data.data.data);
+          console.log(data.data);
+          $scope.resultado=data.data;
+          var mensaje = $ionicPopup.show({
+            template: data.data.data,
+            title: 'Login',
+            subTitle: '',
+            scope: $scope,
+            buttons: [
+              { text: 'Cerrar' },
+            ]
+          });
         },function(){},res.user,res.pass);
         console.log('Tapped!', res.user, 'y ', res.pass);
       }
