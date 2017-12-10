@@ -61,15 +61,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: ''
-        }
-      }
-    })
   .state('tab.terminosycondiciones', {
     url: '/terminosycondiciones',
     views: {
@@ -79,10 +70,13 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  // para pasar los datos, la url debe quedar con /:variable?
+  // esto permite nombrar la variable, que debe tener el mismo nombre en
+  //$state.go t $stateParams
   .state('tab.registrarse', {
-    url: '/registrarse',
+    url: '/registrarse/:data_registro?',
     views: {
-      'tab-registrarse': {
+      'tab-home': {
         templateUrl: 'templates/registrarse.html',
         controller: 'registrarseCtrl'
       }
