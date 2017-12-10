@@ -3,7 +3,7 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http) {
     $scope.data = {}
     // An elaborate, custom popup
     var myPopup = $ionicPopup.show({
-      template: '<input type="text" ng-model="data.user"><br><input type="password" ng-model="data.pass">',
+      template: 'Correo:<br><input type="text" ng-model="data.user"><br>Clave:<br><input type="password" ng-model="data.pass"><br>¿Aun no tienes cuenta?, registrate <a href="templates/registrarse.html">aqui.</a>',
       title: 'Login',
       subTitle: '',
       scope: $scope,
@@ -28,15 +28,6 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http) {
         server_get_login($http,function(data){
           console.log(data.data);
           $scope.resultado=data.data;
-          var mensaje = $ionicPopup.show({
-            template: data.data.data,
-            title: 'Login',
-            subTitle: '',
-            scope: $scope,
-            buttons: [
-              { text: 'Cerrar' },
-            ]
-          });
         },function(){},res.user,res.pass);
         console.log('Tapped!', res.user, 'y ', res.pass);
       }

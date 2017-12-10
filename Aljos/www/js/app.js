@@ -78,6 +78,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: ''
       }
     }
+  })
+  .state('tab.registrarse', {
+    url: '/registrarse',
+    views: {
+      'tab-registrarse': {
+        templateUrl: 'templates/registrarse.html',
+        controller: 'registrarseCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
