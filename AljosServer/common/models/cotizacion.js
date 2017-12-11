@@ -29,7 +29,7 @@ module.exports = function(Cotizacion) {
   });
   Cotizacion.listar=function(idusuario, idempresa, cb){
     if(idusuario==null && idempresa==null){
-      cb(null{ok:false,data:"Al menos 1 campo debe tener un valor"});
+      cb(null,{ok:false,data:"Al menos 1 campo debe tener un valor"});
     }else{
       if(idusuario==null){
       }else{
