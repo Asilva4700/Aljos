@@ -5,6 +5,7 @@ module.exports = function(Publicacion) {
   Publicacion.crear = function(idEmpresa, descripcion, cantidad, nombre, precio, menu, local, direccion,
     numeracion, ciudad, comuna, tamanorecinto, incluyepatio, tamanopatio, incluyecocina, cb){
     var ProductoServicio = app.models.Productoservicio;
+    var fecha = new Date();
     if(local==1){
       var local={
         direccion:direccion,
@@ -15,7 +16,7 @@ module.exports = function(Publicacion) {
         incluyepatio:incluyepatio,
         tamanopatio:tamanopatio,
         incluyecocina:incluyecocina,
-        fecha:"01/01/2017"
+        fecha:fecha
       }
       var Local = app.models.Local;
       Local.create(local,function(error,obj){
@@ -36,7 +37,7 @@ module.exports = function(Publicacion) {
                 idempresa:idEmpresa,
                 idproducto:data.id,
                 descripcion:descripcion,
-                fecha:"01/01/2017",
+                fecha:fecha,
                 cantidad:cantidad
               };
               Publicacion.create(publicacion,function(error,obj){
@@ -64,7 +65,7 @@ module.exports = function(Publicacion) {
             idempresa:idEmpresa,
             idproducto:data.id,
             descripcion:descripcion,
-            fecha:"01/01/2017",
+            fecha:fecha,
             cantidad:cantidad
           };
           Publicacion.create(publicacion,function(error,obj){
@@ -144,6 +145,93 @@ module.exports = function(Publicacion) {
       {arg: 'id', type: 'number', required: true},
       {arg: 'idproducto', type: 'number', required: true},
       {arg: 'idlocal', type: 'number', required: false}
+    ],
+    returns: {arg: 'data', type: 'object'}
+  });
+  Publicacion.editar = function (idPublicacion, idProducto, idLocal, descripcion, cantidad, nombre, precio, direccion,
+    numeracion, ciudad, comuna, tamanorecinto, incluyepatio, tamanopatio, incluyecocina,cb){
+      if(idLocal!=0){
+        var Local = app.models.Local;
+        var local={
+          direccion:direccion,
+          numeracion:numeracion,
+          ciudad:ciudad,
+          comuna:comuna,
+          tamanorecinto:tamanorecinto,
+          incluyepatio:incluyepatio,
+          tamanopatio:tamanopatio,
+          incluyecocina:incluyecocina
+        };
+        Local.updateAll({id:idLocal},local,function(error,obj){
+          if(error){cb(null,{ok:false,data:error});}
+          else{
+            var dataLocal=obj;
+            var publicacion={
+              descripcion:descripcion,
+              cantidad:cantidad
+            };
+            Publicacion.updateAll({id:idPublicacion},publicacion,function(error,obj){
+              if(error){cb(null,{ok:false,data:error});}
+              else{
+                var Productoservicio = app.models.Productoservicio;
+                var producto={
+                  nombre:nombre,
+                  precio:precio
+                };
+                var dataPublicacion=obj;
+                Productoservicio.updateAll({id:idProducto},producto,function(error,obj){
+                  if(error){cb(null,{ok:false,data:error});}
+                  else{
+                    var dataProducto=obj;
+                    cb(null,{ok:true,dataProducto,dataPublicacion,dataLocal});
+                  }
+                });
+              }
+            });
+          }
+        });
+      }else{
+        var publicacion={
+          descripcion:descripcion,
+          cantidad:cantidad
+        };
+        Publicacion.updateAll({id:idPublicacion},publicacion,function(error,obj){
+          if(error){cb(null,{ok:false,data:error});}
+          else{
+            var Productoservicio = app.models.Productoservicio;
+            var producto={
+              nombre:nombre,
+              precio:precio
+            };
+            var dataPublicacion=obj;
+            Productoservicio.updateAll({id:idProducto},producto,function(error,obj){
+              if(error){cb(null,{ok:false,data:error});}
+              else{
+                var dataProducto=obj;
+                cb(null,{ok:true,dataProducto,dataPublicacion});
+              }
+            });
+          }
+        });
+      }
+  };
+  Publicacion.remoteMethod('editar',{
+    accepts:[
+      {arg: 'idPublicacion', type: 'number', required: true},
+      {arg: 'idProducto', type: 'number', required: true},
+      {arg: 'idLocal', type: 'number', required: false},
+      {arg: 'descripcion', type: 'string', required: true},
+      {arg: 'cantidad', type: 'number', required: true},
+      {arg: 'nombre', type: 'string', required: true},
+      {arg: 'precio', type: 'number', required: true},
+      {arg: 'direccion', type: 'string', required: false},
+      {arg: 'numeracion', type: 'number', required: false},
+      {arg: 'ciudad', type: 'string', required: false},
+      {arg: 'comuna', type: 'string', required: false},
+      {arg: 'tamanorecinto', type: 'number', required: false},
+      {arg: 'incluyepatio', type: 'number', required: false},
+      {arg: 'tamanopatio', type: 'number', required: false},
+      {arg: 'incluyecocina', type: 'number', required: false}
     ],
     returns: {arg: 'data', type: 'object'}
   });

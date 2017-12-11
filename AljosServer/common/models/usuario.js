@@ -52,13 +52,14 @@ module.exports = function(Usuario) {
       if(error){cb(null,{ok:false,registrado:false,data:error});}
       else{
         if(obj==null){
+          var fecha = new Date();
           var user={
             correo: correoUsuario,
             contrasena: contraseñaUsuario,
             rut: rutUsuario,
             numerotelefono: numeroTelefonoUsuario,
             direccion: direccionUsuario,
-            fecha: "01/01/2017",
+            fecha: fecha,
             baneado: 0,
             nombre: nombreUsuario,
             idtipousuario: tipoUsuario
@@ -73,7 +74,7 @@ module.exports = function(Usuario) {
                 nombre:nombreEmpresa,
                 rut:rutEmpresa,
                 paginaweb:paginaWebEmpresa,
-                fecha: "01/01/2017",
+                fecha: fecha,
                 advertencias: 0,
                 correo:correoEmpresa
               }

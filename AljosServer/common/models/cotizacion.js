@@ -1,6 +1,49 @@
 'use strict';
 
 module.exports = function(Cotizacion) {
+  Cotizacion.solicitar = function(idEmpresa, idPublicacion, idUsuario, total, cb){
+    var fecha = new Date();
+    var cotizacion={
+      idempresa:idEmpresa,
+      idpublicacion:idPublicacion,
+      idusuario:idUsuario,
+      total:total,
+      fecha:fecha,
+      estado:"Pendiente"
+    };
+    Cotizacion.create(cotizacion,function(error,obj){
+      if(error){cb(null,{ok:false,data:error});}
+      else{
+        cb(null,{ok:true,data:obj});
+      }
+    });
+  }
+  Cotizacion.remoteMethod('solicitar',{
+    accepts:[
+      {arg: 'idEmpresa', type: 'number', required: true},
+      {arg: 'idPublicacion', type: 'number', required: true},
+      {arg: 'idUsuario', type: 'number', required: true},
+      {arg: 'total', type: 'number', required: true}
+    ],
+    returns: {arg: 'data', type: 'object'}
+  });
+  Cotizacion.listar=function(idusuario, idempresa, cb){
+    if(idusuario==null && idempresa==null){
+      cb(null{ok:false,data:"Al menos 1 campo debe tener un valor"});
+    }else{
+      if(idusuario==null){
+      }else{
+
+      }
+    }
+  }
+  Cotizacion.remoteMethod('solicitar',{
+    accepts:[
+      {arg: 'idUsuario', type: 'number', required: false},
+      {arg: 'idEmpresa', type: 'number', required: false}
+    ],
+    returns: {arg: 'data', type: 'object'}
+  });
   Cotizacion.disableRemoteMethodByName("count");
   Cotizacion.disableRemoteMethodByName("patchOrCreate");
   Cotizacion.disableRemoteMethodByName("replaceById");
