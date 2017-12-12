@@ -9,3 +9,7 @@ var server_get_login = function($http,exito,error,user,pass){
   };
   make_post($http,request,exito,error,"Usuarios/login");
 }
+var server_get_publicaciones = function($http,exito,error){
+  var request = {};
+  make_post($http,request,exito,error,"Publicacions/listar");
+};

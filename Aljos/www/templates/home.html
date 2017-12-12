@@ -1,14 +1,51 @@
 <ion-view view-title="Home">
   <ion-content class="padding">
-    <h2>Welcome to Ionic</h2>
-    <button class="button button-dark" ng-click="login()">
-      Logearse
-    </button>
-    <p>
-    This is the Ionic starter for tabs-based apps. For other starters and ready-made templates, check out the <a href="http://market.ionic.io/starters" target="_blank">Ionic Market</a>.
-    </p>
+    <ion-header>
+      <!--Searchbar-->
+      <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" placeholder="Search">
+        </label>
+        <button class="button button-dark">
+          Cancel
+          </button>
+      </div>
+      <br>
+      <!--Filtros-->
+      <div class="button-bar">
+        Filtros:
+        <a class="button">Nombre</a>
+        <a class="button">Calificación</a>
+        <a class="button">Precio</a>
+        <a class="button">Tipo</a>
+      </div>
+    </ion-header>
     <p ng-if="resultado.data">
-      resultado: {{resultado.data}}
+      resultado: {{resultado.logeado}}
     </p>
+    <!--Slide box for top 10 vip-->
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat='img in listImg'>
+        <div class="item item-image">
+          <img src="{{img.ruta}}">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <!--El resto de las publicaciones-->
+    <div class="list card" ng-repeat='pub in publicacionesList'>
+      <div class="item item-avatar">
+        <img src="mcfly.jpg">
+        <h2>Nombre producto/servicio</h2>
+        <p>Nombre empresa</p>
+        <p>calificación</p>
+      </div>
+      <div class="item item-body">
+        <img width="40%" src="{{img.ruta}}" style="float: left;">
+        <p style="text-aling: right;">
+          Descripcion del producto
+        </p>
+    </div>
+  </div>
   </ion-content>
 </ion-view>
