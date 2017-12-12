@@ -38,9 +38,8 @@ module.exports = function(Encuesta) {
   }
   Encuesta.remoteMethod('Llenar',{
     accepts:[
-      {arg: 'pregunta', type: 'string', required: true},
-      {arg: 'respuesta', type: 'string', required: false},
-      {arg: 'numeroencuesta', type: 'number', required: true}
+      {arg: 'id', type: 'number', required: true},
+      {arg: 'respuesta', type: 'string', required: false}
     ],
     returns: {arg: 'data', type: 'object'}
   });

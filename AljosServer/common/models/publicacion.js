@@ -44,7 +44,19 @@ module.exports = function(Publicacion) {
                 if(error){cb(null,{ok:false,data:error});}
                 else{
                   var datapubli=obj;
-                  cb(null,{ok:true,datapubli,data,datalocal});
+                  var Imagen=app.models.Imagen;
+                  var imagen={
+                    idpublicacion:datapubli.id,
+                    ruta:"",
+                    fecha:fecha
+                  }
+                  Imagen.create(imagen,function(error,obj){
+                    var dataimg=obj;
+                    if(error){cb(null,{ok:false,data:error});}
+                    else{
+                      cb(null,{ok:true,datapubli,data,datalocal,dataimg});
+                    }
+                  });
                 }
               });
             }
@@ -71,7 +83,20 @@ module.exports = function(Publicacion) {
           Publicacion.create(publicacion,function(error,obj){
             if(error){cb(null,{ok:false,data:error});}
             else{
-              cb(null,{ok:true,data:obj,data});
+              var datapubli=obj;
+              var Imagen=app.models.Imagen;
+              var imagen={
+                idpublicacion:datapubli.id,
+                ruta:"prueba",
+                fecha:fecha
+              }
+              Imagen.create(imagen,function(error,obj){
+                var dataimg=obj;
+                if(error){cb(null,{ok:false,data:error});}
+                else{
+                  cb(null,{ok:true,datapubli,data,dataimg});
+                }
+              });
             }
           });
         }
@@ -99,16 +124,21 @@ module.exports = function(Publicacion) {
     returns: {arg: 'data', type: 'object'}
   });
   Publicacion.listar = function(cb){
-    Publicacion.find({include:{
-      relation:'productoservicio',
+    var Imagen = app.models.Imagen;
+    Imagen.find({include:{
+      relation:'publicacion',
       scope:{
-        include:['local']
+        include:{
+          relation:'productoservicio',
+          scope:{
+            include:['local']
+          }
+        }
       }
     }},function(error,obj){
+      console.log(error);
       if(error){cb(null,{ok:false,data:error});}
       else{
-        var data=data;
-        data.img=null;
         cb(null,{ok:true,data:obj});
       }
     });
