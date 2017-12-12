@@ -114,6 +114,21 @@
       "type": "belongsTo",
       "model": "Productoservicio",
       "foreignKey": "idproducto"
+    },
+    "empresa": {
+      "type": "belongsTo",
+      "model": "Empresa",
+      "foreignKey": "idempresa"
+    },
+    "imagen": {
+      "type": "hasMany",
+      "model": "Imagen",
+      "foreignKey": "idpublicacion"
+    },
+    "calificacion": {
+      "type": "hasMany",
+      "model": "Calificacion",
+      "foreignKey": "idpublicacion"
     }
   },
   "acls": [],
