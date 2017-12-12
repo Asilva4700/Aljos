@@ -139,7 +139,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "usuario": {
+      "type": "hasOne",
+      "model": "Usuario",
+      "foreignKey": "id"
+    }
+  },
   "acls": [],
   "methods": {}
 }

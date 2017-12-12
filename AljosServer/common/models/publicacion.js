@@ -124,19 +124,23 @@ module.exports = function(Publicacion) {
     returns: {arg: 'data', type: 'object'}
   });
   Publicacion.listar = function(cb){
-    var Imagen = app.models.Imagen;
-    Imagen.find({include:{
-      relation:'publicacion',
-      scope:{
-        include:{
-          relation:'productoservicio',
-          scope:{
-            include:['local']
-          }
+    Publicacion.find({include:[
+      {
+        relation:'productoservicio',
+        scope:{
+          include:['local']
         }
+      },{
+        relation:'empresa',
+        scope:{}
+      },{
+        relation:'imagen',
+        scope:{}
+      },{
+        relation:'calificacion',
+        scope:{}
       }
-    }},function(error,obj){
-      console.log(error);
+    ]},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
         cb(null,{ok:true,data:obj});
@@ -147,41 +151,47 @@ module.exports = function(Publicacion) {
     accepts:[],
     returns: {arg: 'data', type: 'object'}
   });
-  Publicacion.eliminar = function(id,idproducto,idlocal,cb){
-    Publicacion.destroyAll({id:id},function(error,obj){
+  Publicacion.eliminar = function(id,idproducto,idlocal,idimagen,cb){
+    var Imagen=app.models.Imagen;
+    Imagen.destroyAll({id:idimagen},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
-        var Productoservicio = app.models.Productoservicio;
-        Productoservicio.destroyAll({id:idproducto},function(error,obj){
+        Publicacion.destroyAll({id:id},function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
           else{
-            if(idlocal==null){
-              cb(null,{ok:true,data:obj});
-            }else{
-              var Local = app.models.Local;
-              Local.destroyAll({id:idlocal},function(error,obj){
-                if(error){cb(null,{ok:false,data:error});}
-                else{
+            var Productoservicio = app.models.Productoservicio;
+            Productoservicio.destroyAll({id:idproducto},function(error,obj){
+              if(error){cb(null,{ok:false,data:error});}
+              else{
+                if(idlocal==null){
                   cb(null,{ok:true,data:obj});
+                }else{
+                  var Local = app.models.Local;
+                  Local.destroyAll({id:idlocal},function(error,obj){
+                    if(error){cb(null,{ok:false,data:error});}
+                    else{
+                      cb(null,{ok:true,data:obj});
+                    }
+                  });
                 }
-              });
-            }
+              }
+            });
           }
         });
       }
     });
-
   };
   Publicacion.remoteMethod('eliminar',{
     accepts:[
       {arg: 'id', type: 'number', required: true},
       {arg: 'idproducto', type: 'number', required: true},
-      {arg: 'idlocal', type: 'number', required: false}
+      {arg: 'idlocal', type: 'number', required: false},
+      {arg: 'idimagen', type: 'number', required: true}
     ],
     returns: {arg: 'data', type: 'object'}
   });
-  Publicacion.editar = function (idPublicacion, idProducto, idLocal, descripcion, cantidad, nombre, precio, direccion,
-    numeracion, ciudad, comuna, tamanorecinto, incluyepatio, tamanopatio, incluyecocina,cb){
+  Publicacion.editar = function (idPublicacion, idProducto, idLocal, idImagen, descripcion, cantidad, nombre, precio, direccion,
+    numeracion, ciudad, comuna, tamanorecinto, incluyepatio, tamanopatio, incluyecocina,ruta,cb){
       if(idLocal!=0){
         var Local = app.models.Local;
         var local={
@@ -204,7 +214,7 @@ module.exports = function(Publicacion) {
             };
             Publicacion.updateAll({id:idPublicacion},publicacion,function(error,obj){
               if(error){cb(null,{ok:false,data:error});}
-              else{
+              else{false
                 var Productoservicio = app.models.Productoservicio;
                 var producto={
                   nombre:nombre,
@@ -215,7 +225,17 @@ module.exports = function(Publicacion) {
                   if(error){cb(null,{ok:false,data:error});}
                   else{
                     var dataProducto=obj;
-                    cb(null,{ok:true,dataProducto,dataPublicacion,dataLocal});
+                    var Imagen=app.models.Imagen;
+                    var imagen ={
+                      ruta:ruta
+                    };
+                    Imagen.updateAll({id:idImagen},imagen,function(error,obj){
+                      if(error){cb(null,{ok:false,data:error});}
+                      else{
+                        var dataImg=obj;
+                        cb(null,{ok:true,dataProducto,dataPublicacion,dataLocal,dataImg});
+                      }
+                    });
                   }
                 });
               }
@@ -240,7 +260,18 @@ module.exports = function(Publicacion) {
               if(error){cb(null,{ok:false,data:error});}
               else{
                 var dataProducto=obj;
-                cb(null,{ok:true,dataProducto,dataPublicacion});
+                var Imagen=app.models.Imagen;
+                var imagen ={
+                  ruta:ruta
+                };
+                Imagen.updateAll({id:idImagen},imagen,function(error,obj){
+
+                  if(error){cb(null,{ok:false,data:error});}
+                  else{
+                    var dataImg=obj;
+                    cb(null,{ok:true,dataProducto,dataPublicacion,dataImg});
+                  }
+                });
               }
             });
           }
@@ -252,6 +283,7 @@ module.exports = function(Publicacion) {
       {arg: 'idPublicacion', type: 'number', required: true},
       {arg: 'idProducto', type: 'number', required: true},
       {arg: 'idLocal', type: 'number', required: false},
+      {arg: 'idImagen', type: 'number', required: true},
       {arg: 'descripcion', type: 'string', required: true},
       {arg: 'cantidad', type: 'number', required: true},
       {arg: 'nombre', type: 'string', required: true},
@@ -263,7 +295,8 @@ module.exports = function(Publicacion) {
       {arg: 'tamanorecinto', type: 'number', required: false},
       {arg: 'incluyepatio', type: 'number', required: false},
       {arg: 'tamanopatio', type: 'number', required: false},
-      {arg: 'incluyecocina', type: 'number', required: false}
+      {arg: 'incluyecocina', type: 'number', required: false},
+      {arg: 'rutaImagen', type: 'string', required: true}
     ],
     returns: {arg: 'data', type: 'object'}
   });

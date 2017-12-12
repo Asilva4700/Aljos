@@ -169,7 +169,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "Imagen": {
+      "type": "hasMany",
+      "model": "Imagen",
+      "foreignKey": "idimagen"
+    }
+  },
   "acls": [],
   "methods": {}
 }
