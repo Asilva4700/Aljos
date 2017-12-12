@@ -68,22 +68,26 @@ module.exports = function(Usuario) {
             var data=obj;
             if(error){cb(null,{ok:false,registrado:false,data:error});}
             else{
-              var Empresa=app.models.Empresa;
-              var empresa={
-                idusuario:data.id,
-                nombre:nombreEmpresa,
-                rut:rutEmpresa,
-                paginaweb:paginaWebEmpresa,
-                fecha: fecha,
-                advertencias: 0,
-                correo:correoEmpresa
-              }
-              Empresa.create(empresa,function(error,obj){
-                if(error){cb(null,{ok:false,registrado:false,data:error});}
-                else{
-                  cb(null,{ok:true,registrado:true,data:{obj,data}});
+              if(tipoUsuario==2){
+                cb(null,{ok:true,data});
+              }else{
+                var Empresa=app.models.Empresa;
+                var empresa={
+                  idusuario:data.id,
+                  nombre:nombreEmpresa,
+                  rut:rutEmpresa,
+                  paginaweb:paginaWebEmpresa,
+                  fecha: fecha,
+                  advertencias: 0,
+                  correo:correoEmpresa
                 }
-              });
+                Empresa.create(empresa,function(error,obj){
+                  if(error){cb(null,{ok:false,registrado:false,data:error});}
+                  else{
+                    cb(null,{ok:true,registrado:true,data:{obj,data}});
+                  }
+                });
+              }
             }
           });
         }else{

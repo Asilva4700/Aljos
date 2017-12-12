@@ -27,20 +27,32 @@ module.exports = function(Cotizacion) {
     ],
     returns: {arg: 'data', type: 'object'}
   });
-  Cotizacion.listar=function(idusuario, idempresa, cb){
+  Cotizacion.listar=function(idusuario, idempresa, tipo, cb){
     if(idusuario==null && idempresa==null){
       cb(null,{ok:false,data:"Al menos 1 campo debe tener un valor"});
     }else{
-      if(idusuario==null){
-      }else{
-
+      if(tipo==="usuario"){
+        Cotizacion.find({where:{idusuario:idusuario}},function(error,obj){
+          if(error){cb(null,{ok:false,data:error});}
+          else{
+            cb(null,{ok:true,data:obj,tipo});
+          }
+        });
+      }else if(tipo==="empresa" || tipo==="vip" || tipo==="vipvideo"){
+        Cotizacion.find({where:{idempresa:idempresa}},function(error,obj){
+          if(error){cb(null,{ok:false,data:error});}
+          else{
+            cb(null,{ok:true,data:obj,tipo});
+          }
+        });
       }
     }
   }
-  Cotizacion.remoteMethod('solicitar',{
+  Cotizacion.remoteMethod('listar',{
     accepts:[
       {arg: 'idUsuario', type: 'number', required: false},
-      {arg: 'idEmpresa', type: 'number', required: false}
+      {arg: 'idEmpresa', type: 'number', required: false},
+      {arg: 'tipo', type: 'string', required: true}
     ],
     returns: {arg: 'data', type: 'object'}
   });

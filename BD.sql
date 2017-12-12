@@ -244,11 +244,11 @@ DROP TABLE IF EXISTS `aljos`.`encuesta` ;
 CREATE TABLE IF NOT EXISTS `aljos`.`encuesta` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `pregunta` VARCHAR(100) NOT NULL,
-  `Encuestacol` VARCHAR(100) NOT NULL,
+  `respuesta` VARCHAR(100) NULL,
   `numeroEncuesta` INT(11) NOT NULL,
-  `usuario_id` INT(11) NOT NULL,
+  `usuario_id` INT(11) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `Encuestacol_UNIQUE` (`Encuestacol` ASC),
+  UNIQUE INDEX `Encuestacol_UNIQUE` (`respuesta` ASC),
   INDEX `fk_Encuesta_usuario1_idx` (`usuario_id` ASC),
   CONSTRAINT `fk_Encuesta_usuario1`
     FOREIGN KEY (`usuario_id`)
