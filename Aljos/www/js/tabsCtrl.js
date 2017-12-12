@@ -31,6 +31,8 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
         server_get_login($http,function(data){
           console.log(data.data);
           $scope.resultado=data.data;
+          $scope.logeado=data.data.logeado;
+          console.log(data.data.logeado);
         },function(){},res.user,res.pass);
         console.log('Tapped!', res.user, 'y ', res.pass);
       }
@@ -47,5 +49,9 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
    //notar el nombre data_registro que indica el nombre de la variable
    var algo = { algomas:"" };
    $state.go('tab.registrarse', {data_registro:JSON.stringify(algo)});
+ };
+ $scope.perfil = function(){
+   console.log("entra");
+   $state.go('tab.perfilUsuario',{});
  };
 });

@@ -82,6 +82,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'registrarseCtrl'
       }
     }
+  })
+  .state('tab.perfilUsuario',{
+    url: '/perfilUsuario',
+    view:{
+      'tab-home':{
+        templateUrl: 'templates/perfilUsuario.html',
+        controller: 'perfilUsuarioCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

@@ -24,7 +24,6 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http, $s
     ruta:"../img/perry.png"
   }];
   $scope.listImg = listImg;
-  console.log(listImg);
 
   //lista de publicaciones
   server_get_publicaciones($http,function(data){
