@@ -107,6 +107,8 @@ module.exports = function(Publicacion) {
     }},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
+        var data=data;
+        data.img=null;
         cb(null,{ok:true,data:obj});
       }
     });
