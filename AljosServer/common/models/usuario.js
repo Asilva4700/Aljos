@@ -26,7 +26,11 @@ module.exports = function(Usuario) {
     var fields={
       id:false
     };
-    Usuario.findOne({where:{correo:correo},fields:fields}, function(error,obj){
+    Usuario.findOne({where:{correo:correo},include:[
+      {
+        relation:'empresa',
+        scope:{}
+      }]}, function(error,obj){
         if(error){cb(null,{ok:false,data:error});}
         else{
           if(obj!=null){

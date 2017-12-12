@@ -170,10 +170,15 @@
   },
   "validations": [],
   "relations": {
-    "Imagen": {
+    "imagen": {
       "type": "hasMany",
       "model": "Imagen",
       "foreignKey": "idimagen"
+    },
+    "empresa": {
+      "type": "hasOne",
+      "model": "Empresa",
+      "foreignKey": "idusuario"
     }
   },
   "acls": [],
