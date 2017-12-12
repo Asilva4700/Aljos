@@ -21,9 +21,6 @@
         <a class="button">Tipo</a>
       </div>
     </ion-header>
-    <p ng-if="resultado.data">
-      resultado: {{resultado.logeado}}
-    </p>
     <!--Slide box for top 10 vip-->
     <ion-slide-box on-slide-changed="slideHasChanged($index)">
       <ion-slide ng-repeat='img in listImg'>
@@ -36,14 +33,14 @@
     <div class="list card" ng-repeat='pub in publicacionesList'>
       <div class="item item-avatar">
         <img src="mcfly.jpg">
-        <h2>Nombre producto/servicio</h2>
+        <h2>{{pub.publicacion.productoservicio.nombre}}</h2>
         <p>Nombre empresa</p>
         <p>calificación</p>
       </div>
       <div class="item item-body">
-        <img width="40%" src="{{img.ruta}}" style="float: left;">
+        <img width="40%" src="{{pub.ruta}}" style="float: left;">
         <p style="text-aling: right;">
-          Descripcion del producto
+          {{pub.publicacion.descripcion}}
         </p>
     </div>
   </div>
