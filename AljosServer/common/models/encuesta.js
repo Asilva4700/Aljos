@@ -33,13 +33,28 @@ module.exports = function(Encuesta) {
     ],
     returns: {arg: 'data', type: 'object'}
   });
-  Encuesta.Llenar=function(id,respuesta,cb){
-
+  Encuesta.Llenar=function(id,respuesta,numeroencuesta,cb){
+    if(numeroencuesta>0){
+      Encuesta.find({numeroencuesta:numeroencuesta},function(error,obj){
+        if(error){cb(null,{ok:false,data:error});}
+        else{
+          cb(null,{ok:true,data:obj});
+        }
+      });
+    }else if(id>0){
+      Encuesta.updateAll({id:id},{respuesta:respuesta},function(error,obj){
+        if(error){cb(null,{ok:false,data:error});}
+        else{
+          cb(null,{ok:true,data:obj});
+        }
+      });
+    }
   }
   Encuesta.remoteMethod('Llenar',{
     accepts:[
-      {arg: 'id', type: 'number', required: true},
-      {arg: 'respuesta', type: 'string', required: false}
+      {arg: 'id', type: 'number', required: false},
+      {arg: 'respuesta', type: 'string', required: false},
+      {arg: 'numeroencuesta', type: 'number', required: false}
     ],
     returns: {arg: 'data', type: 'object'}
   });

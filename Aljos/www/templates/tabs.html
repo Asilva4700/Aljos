@@ -5,23 +5,25 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
   <!-- Dashboard Tab -->
-  <ion-tab ng-if="!logeado" title="Inicio de secion" icon-off="ion-person" icon-on="ion-person" ng-click="login()">
-  </ion-tab>
-
-  <ion-tab ng-if="logeado" title="{{resultado.data.nombre}}" icon-off="ion-person" icon-on="ion-person" ng-click="perfil()">
-  </ion-tab>
-
-  <ion-tab ng-if="true" title="Home" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/home">
+  <ion-tab title="Home" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/home">
     <ion-nav-view name="tab-home"></ion-nav-view>
   </ion-tab>
 
+  <ion-tab ng-if="!logeado" title="Inicio de sesión" icon-off="ion-person" icon-on="ion-person" ng-click="login()">
+    <ion-nav-view name="tab-login"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab  ng-if="logeado" title="{{resultado.data.nombre}}" icon-off="ion-person" icon-on="ion-person" href="#/tab/perfilUsuario">
+    <ion-nav-view name="tab-perfilUsuario"></ion-nav-view>
+  </ion-tab>
+
   <!-- Chats Tab -->
-  <ion-tab ng-if="true" title="Top 10" icon-off="ion-ios-star-outline" icon-on="ion-ios-star" href="#/tab/top10">
+  <ion-tab title="Top 10" icon-off="ion-ios-star-outline" icon-on="ion-ios-star" href="#/tab/top10">
     <ion-nav-view name="tab-top10"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab ng-if="true" title="Terminos y condiciones de uso" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/terminosycondiciones">
+  <ion-tab title="Terminos y condiciones de uso" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/terminosycondiciones">
     <ion-nav-view name="tab-terminosycondiciones"></ion-nav-view>
   </ion-tab>
 

@@ -176,14 +176,14 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `aljos`.`calificacion` ;
 
 CREATE TABLE IF NOT EXISTS `aljos`.`calificacion` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `idCalificacion` INT(11) NOT NULL AUTO_INCREMENT,
   `idPublicacion` INT(11) NOT NULL,
   `idUsuario` INT(11) NOT NULL,
   `fecha` DATE NOT NULL,
   `descripcion` VARCHAR(400) NOT NULL,
   `calificacion` INT(11) NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`idCalificacion`),
   INDEX `idPublicacion` (`idPublicacion` ASC),
   INDEX `idUsuario` (`idUsuario` ASC),
   CONSTRAINT `comentario_ibfk_1`
@@ -299,12 +299,12 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `aljos`.`imagen` ;
 
 CREATE TABLE IF NOT EXISTS `aljos`.`imagen` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `idImagen` INT(11) NOT NULL AUTO_INCREMENT,
   `idPublicacion` INT(11) NULL DEFAULT NULL,
   `idUsuario` INT(11) NULL DEFAULT NULL,
   `ruta` VARCHAR(400) NOT NULL,
   `fecha` DATE NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`idImagen`),
   INDEX `idPublicacion` (`idPublicacion` ASC),
   INDEX `idUsuario` (`idUsuario` ASC),
   CONSTRAINT `imagen_ibfk_1`

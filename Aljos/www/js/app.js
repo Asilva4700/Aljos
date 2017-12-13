@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
   // para pasar los datos, la url debe quedar con /:variable?
   // esto permite nombrar la variable, que debe tener el mismo nombre en
-  //$state.go t $stateParams
+  //$state.go y $stateParams
   .state('tab.registrarse', {
     url: '/registrarse/:data_registro?',
     views: {
@@ -83,16 +83,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-  .state('tab.perfilUsuario',{
+  .state('tab.perfilUsuario', {
     url: '/perfilUsuario',
-    view:{
-      'tab-home':{
+    views:{
+      'tab-perfilUsuario':{
         templateUrl: 'templates/perfilUsuario.html',
         controller: 'perfilUsuarioCtrl'
       }
     }
   });
-
+  //ng-if="logeado"
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
 

@@ -146,7 +146,7 @@ module.exports = function(Publicacion) {
         cb(null,{ok:true,data:obj});
       }
     });
-  }
+  };
   Publicacion.remoteMethod('listar',{
     accepts:[],
     returns: {arg: 'data', type: 'object'}

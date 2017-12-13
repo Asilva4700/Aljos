@@ -32,7 +32,6 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
           console.log(data.data);
           $scope.resultado=data.data;
           $scope.logeado=data.data.logeado;
-          console.log(data.data.logeado);
         },function(){},res.user,res.pass);
         console.log('Tapped!', res.user, 'y ', res.pass);
       }
