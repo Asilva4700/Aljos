@@ -72,7 +72,8 @@ module.exports = function(Usuario) {
             var data=obj;
             if(error){cb(null,{ok:false,registrado:false,data:error});}
             else{
-              if(tipoUsuario==2){
+              console.log(tipoUsuario);
+              if(tipoUsuario==2 || tipoUsuario==1){
                 cb(null,{ok:true,data});
               }else{
                 var Empresa=app.models.Empresa;
