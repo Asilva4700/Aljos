@@ -27,7 +27,8 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http, $s
 
   //lista de publicaciones
   server_get_publicaciones($http,function(data){
-    console.log(data.data.data);
+    //console.log(data.data.data.length);
+    //console.log(data.data.data);
     $scope.publicacionesList = data.data.data;
   },function(){});
 });

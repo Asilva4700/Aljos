@@ -91,6 +91,51 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'perfilUsuarioCtrl'
       }
     }
+  })
+  .state('tab.local',{
+    url: '/local',
+    views:{
+      'tab-local':{
+        templateUrl:'templates/local.html',
+        controller: 'localCtrl'
+      }
+    }
+  })
+  .state('tab.menu',{
+    url: '/menu',
+    views:{
+      'tab-menu':{
+        templateUrl:'templates/menu.html',
+        controller: 'menuCtrl'
+      }
+    }
+  })
+  .state('tab.preguntasGenerales',{
+    url: '/preguntasGenerales',
+    views:{
+      'tab-preguntasGenerales':{
+        templateUrl:'templates/preguntasGenerales.html',
+        controller: 'preguntasGeneralesCtrl'
+      }
+    }
+  })
+  .state('tab.productosServicios',{
+    url: '/productosServicios',
+    views:{
+      'tab-productosServicios':{
+        templateUrl:'templates/productosServicios.html',
+        controller: 'productosServiciosCtrl'
+      }
+    }
+  })
+  .state('tab.estadisticas',{
+    url: '/estadisticas',
+    views:{
+      'tab-estadisticas':{
+        templateUrl:'templates/estadisticas.html',
+        controller: 'estadisticasCtrl'
+      }
+    }
   });
   //ng-if="logeado"
   // if none of the above states are matched, use this as the fallback

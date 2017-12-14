@@ -32,15 +32,16 @@
     <!--El resto de las publicaciones-->
     <div class="list card" ng-repeat='pub in publicacionesList'>
       <div class="item item-avatar">
-        <img src="mcfly.jpg">
-        <h2>{{pub.publicacion.productoservicio.nombre}}</h2>
-        <p>Nombre empresa</p>
+        <img src="../img/perry.png">
+        <h2>{{pub.productoservicio.nombre}}</h2>
+        <p>{{pub.empresa.nombre}}</p>
         <p>calificación</p>
       </div>
       <div class="item item-body">
-        <img width="40%" src="{{pub.ruta}}" style="float: left;">
+        <!-- <img width="40%" src="{{pub.ruta}}" style="float: left;"> -->
+        <img width="40%" src="../img/imagen-de-prueba.jpg" style="float: left;">
         <p style="text-aling: right;">
-          {{pub.publicacion.descripcion}}
+          {{pub.descripcion}}
         </p>
     </div>
   </div>

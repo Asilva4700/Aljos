@@ -6,7 +6,7 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
     myPopup = $ionicPopup.show({
       template: 'Correo:<br><input type="text" ng-model="data.user"><br>Clave:<br>'+
                 '<input type="password" ng-model="data.pass"><br>¿Aun no tienes cuenta?'+
-                ', registrate <a href="" ng-click="pasarPaguina()">aqui.</a>',
+                ', registrate <a href="" ng-click="registroUsu()">aqui.</a>',
       title: 'Login',
       subTitle: '',
       scope: $scope,
@@ -29,15 +29,22 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
     myPopup.then(function(res) {
       if(res!=null){
         server_get_login($http,function(data){
-          console.log(data.data);
+          console.log(data.data.data);
           $scope.resultado=data.data;
-          $scope.logeado=data.data.logeado;
+          datosUsuario = data.data.data;
+          logeado = data.data.logeado;
+          $scope.logeado=logeado;
+          if(!data.data.logeado){
+            var alertPopup = $ionicPopup.alert({
+              template: data.data.data
+            });
+          }
         },function(){},res.user,res.pass);
         console.log('Tapped!', res.user, 'y ', res.pass);
       }
     });
  };
- $scope.pasarPaguina = function() {
+ $scope.registroUsu = function() {
    myPopup.close();
    // El equivalente al href, este indica 2 paramtros, el primero indica donde
    // el segundo indica que se quiere pasar
@@ -50,7 +57,6 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
    $state.go('tab.registrarse', {data_registro:JSON.stringify(algo)});
  };
  $scope.perfil = function(){
-   console.log("entra");
    $state.go('tab.perfilUsuario',{});
  };
 });

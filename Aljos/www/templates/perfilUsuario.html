@@ -1,5 +1,43 @@
 <ion-view view-title="Perfil">
   <ion-content>
-    <h2>Perfil de usuario</h2>
+    <a class="item item-avatar" href="#">
+      <img src="../img/perry.png">
+      <h2>{{user.nombre}}</h2>
+    </a>
+    <br>
+    <div>
+      Nombre empresa:   (añadir a los datos traidos por el logeo)<br>
+      Correo electronico:   {{user.correo}}<br>
+      Dirección:   {{user.direccion}}<br>
+      N° telefonico:   {{user.numerotelefono}}<br>
+      Rut:   {{user.rut}}<br>
+      Página web:   (añadir a los datos traidos por el logeo)<br>
+    </div>
+    <br>
+    <div>
+      <a class="button button-icon icon ion-pie-graph" ng-click="irEstadisticas()">
+        Estadisticas
+        <ion-nav-view name="tab-estadisticas"></ion-nav-view>
+      </a>
+      <a class="button button-icon icon ion-fork" ng-click="irMenu()">
+        Menú
+        <ion-nav-view name="tab-menu"></ion-nav-view>
+      </a>
+      <br>
+      <a class="button button-icon icon ion-ios-cart" ng-click="irProductosServicios()">
+        Productos/Servicios
+        <ion-nav-view name="tab-productosServicios"></ion-nav-view>
+      </a>
+      <a class="button button-icon icon ion-ios-home" ng-click="irLocal()">
+        Establecimiento
+        <ion-nav-view name="tab-local"></ion-nav-view>
+      </a>
+      <br>
+      <a class="button button-icon icon ion-help" ng-click="irPreguntasGenerales()">
+        Preguntas generales
+        <ion-nav-view name="tab-preguntasGenerales"></ion-nav-view>
+      </a>
+      <a class="button button-icon icon ion-log-out" ng-click="logOut()">Cerrar sesión</a>
+    </div>
   </ion-content>
 </ion-view>

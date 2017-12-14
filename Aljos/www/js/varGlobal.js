@@ -1,1 +1,2 @@
-var nombreUsuario;
+var datosUsuario;
+var logeado;
