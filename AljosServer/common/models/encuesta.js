@@ -35,7 +35,7 @@ module.exports = function(Encuesta) {
   });
   Encuesta.Llenar=function(id,respuesta,numeroencuesta,cb){
     if(numeroencuesta>0){
-      Encuesta.find({numeroencuesta:numeroencuesta},function(error,obj){
+      Encuesta.find({where:{numeroencuesta:numeroencuesta}},function(error,obj){
         if(error){cb(null,{ok:false,data:error});}
         else{
           cb(null,{ok:true,data:obj});
