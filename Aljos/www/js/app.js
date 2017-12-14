@@ -95,7 +95,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('tab.local',{
     url: '/local',
     views:{
-      'tab-local':{
+      'tab-perfilUsuario':{
         templateUrl:'templates/local.html',
         controller: 'localCtrl'
       }
@@ -104,7 +104,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('tab.menu',{
     url: '/menu',
     views:{
-      'tab-menu':{
+      'tab-perfilUsuario':{
         templateUrl:'templates/menu.html',
         controller: 'menuCtrl'
       }
@@ -113,7 +113,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('tab.preguntasGenerales',{
     url: '/preguntasGenerales',
     views:{
-      'tab-preguntasGenerales':{
+      'tab-perfilUsuario':{
         templateUrl:'templates/preguntasGenerales.html',
         controller: 'preguntasGeneralesCtrl'
       }
@@ -122,7 +122,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('tab.productosServicios',{
     url: '/productosServicios',
     views:{
-      'tab-productosServicios':{
+      'tab-perfilUsuario':{
         templateUrl:'templates/productosServicios.html',
         controller: 'productosServiciosCtrl'
       }
@@ -131,7 +131,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('tab.estadisticas',{
     url: '/estadisticas',
     views:{
-      'tab-estadisticas':{
+      'tab-perfilUsuario':{
         templateUrl:'templates/estadisticas.html',
         controller: 'estadisticasCtrl'
       }

@@ -1,16 +1,48 @@
 <ion-view view-title="Registro">
   <ion-content class="padding">
-    <h2>Registro de usuario</h2>
-    correo(*)<br>
-    contraseña(*)<br>
-    rut(*)<br>
-    numero de telefono(*)<br>
-    direccion(*)<br>
-    nombre(*)<br>
-    tipo de usuario (*manejar por dentro)<br>
-    nombre empresa<br>
-    rut empresa<br>
-    paguina web<br>
-    correo empresa<br>
+    <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Correo</span>
+          <input type="text" placeholder="example@gmail.com">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Contraseña</span>
+          <input type="text" placeholder="********">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Rut</span>
+          <input type="text" placeholder="9774572-1">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">N°Telefonico</span>
+          <input type="text" placeholder="89963276">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Dirección</span>
+          <input type="text" placeholder="Av. siempre viva">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nombre</span>
+          <input type="text" placeholder="Homero Simpson">
+        </label>
+        <ion-checkbox ng-click="divEmpresa()">¿Quieres ser empresa?</ion-checkbox>
+        <label ng-if="empresa" class="item item-input item-stacked-label">
+          <span class="input-label">Nombre Empresa</span>
+          <input type="text" placeholder="Scret Garden">
+        </label>
+        <label ng-if="empresa" class="item item-input item-stacked-label">
+          <span class="input-label">Rut Empresa</span>
+          <input type="text" placeholder="78654876-2">
+        </label>
+        <label ng-if="empresa" class="item item-input item-stacked-label">
+          <span class="input-label">Pagina Web</span>
+          <input type="text" placeholder="www.example.cl">
+        </label>
+        <label ng-if="empresa" class="item item-input item-stacked-label">
+          <span class="input-label">Correo Empresa</span>
+          <input type="text" placeholder="secret.garden@gmail.com">
+        </label>
+        <button class="button icon-left ion-android-checkmark-circle button-positive">Registrar</button>
+      </div>
   </ion-content>
 </ion-view>
