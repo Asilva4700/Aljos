@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function(Cotizacion) {
+  var app = require('../../server/server');
   Cotizacion.solicitar = function(idEmpresa, idPublicacion, idUsuario, total, cb){
     var fecha = new Date();
     var cotizacion={
@@ -14,8 +15,20 @@ module.exports = function(Cotizacion) {
     Cotizacion.create(cotizacion,function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
-        cb(null,{ok:true,data:obj});
-      }
+        var dataCotizacion=obj;
+        var Pago = app.models.Pago;
+        var pago={
+          idcotizacion:dataCotizacion.id,
+          estado:"pendiente",
+          idusuario:idUsuario
+        };
+        Pago.create(pago,function(error,obj){
+          if(error){cb(null,{ok:false,data:error});}
+          else{
+            cb(null,{ok:true,dataCotizacion,data:obj});
+          }
+        });
+    }
     });
   }
   Cotizacion.remoteMethod('solicitar',{

@@ -47,14 +47,14 @@
         "nullable": "N"
       }
     },
-    "usuarioId": {
+    "idusuario": {
       "type": "Number",
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
       "mysql": {
-        "columnName": "usuario_id",
+        "columnName": "idUsuario",
         "dataType": "int",
         "dataLength": null,
         "dataPrecision": 10,
@@ -62,14 +62,14 @@
         "nullable": "N"
       }
     },
-    "cotizacionId": {
+    "idcotizacion": {
       "type": "Number",
       "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
       "mysql": {
-        "columnName": "cotizacion_id",
+        "columnName": "idCotizacion",
         "dataType": "int",
         "dataLength": null,
         "dataPrecision": 10,
@@ -79,7 +79,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "idusuario"
+    },
+    "cotizacion": {
+      "type": "belongsTo",
+      "model": "Cotizacion",
+      "foreignKey": "idcotizacion"
+    }
+  },
   "acls": [],
   "methods": {}
 }
