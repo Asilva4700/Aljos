@@ -1,4 +1,4 @@
-<ion-view view-title="Productos/Servicios">
+<ion-view view-title="{{titulo}}">
   <ion-content class="padding">
     <ion-header>
 
@@ -11,6 +11,6 @@
       <div class="col col-75">{{publicacion.productoservicio.nombre}}</div>
       <div class="col">{{publicacion.productoservicio.precio}}</div>
     </div>
-    
+    <button ng-click="agregar()" class="button button-block button-positive">Agregar</button>
   </ion-content>
 </ion-view>

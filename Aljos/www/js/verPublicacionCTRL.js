@@ -14,10 +14,9 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http, $stateP
   $scope.ratingsCallback = function(rating) {
     $scope.calificacion=rating;
   };
-
   try{
     var publicacion = JSON.parse($stateParams.data_publicacion);
-    console.log(publicacion); 
+    console.log(publicacion);
     $scope.publicacion=publicacion;
   }catch(e){
     console.log(e);
@@ -28,7 +27,7 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http, $stateP
   $scope.previous = function() {
     $ionicSlideBoxDelegate.previous();
   };
-  var listImg = [{
+  $scope.listImg = [{
     ruta:"../img/adam.jpg"
   },
   {
@@ -46,7 +45,6 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http, $stateP
   {
     ruta:"../img/perry.png"
   }];
-  $scope.listImg = listImg;
   server_get_calificaciones($http,function(data){
     console.log(data.data.data);
     $scope.calificaciones=data.data.data;
@@ -61,5 +59,9 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http, $stateP
 
     },function(){},datosUsuario.id,publicacion.id,descripcion,$scope.calificacion);
   };
-
+  $scope.agregar=function(){
+    server_set_favoritos($http,function(data){
+      console.log(data);
+    },function(){},datosUsuario.id,$scope.publicacion.id)
+  };
 });

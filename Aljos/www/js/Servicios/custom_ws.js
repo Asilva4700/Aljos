@@ -9,9 +9,30 @@ var server_get_login = function($http,exito,error,user,pass){
   };
   make_post($http,request,exito,error,"Usuarios/login");
 };
-var server_get_publicaciones = function($http,exito,error){
-  var request = {};
+var server_get_publicaciones = function($http,exito,error,idempresa){
+  var request = {idEmpresa:idempresa};
   make_post($http,request,exito,error,"Publicacions/listar");
+};
+var server_set_publicacion = function($http,exito,error,idempresa,nombre,precio,descripcion,cantidad,menu,local,direccion,numeracion,ciudad,comuna,tamanorecinto,incluyepatio,tamanopatio,incluyecocina){
+  var request={
+    idEmpresa:idempresa,
+    descripcion:descripcion,
+    cantidad:cantidad,
+    nombre:nombre,
+    precio:precio,
+    menu:menu,
+    local:local,
+    direccion:direccion,
+    numeracion:numeracion,
+    ciudad:ciudad,
+    comuna:comuna,
+    tamanorecinto:tamanorecinto,
+    incluyepatio:incluyepatio,
+    tamanopatio:tamanopatio,
+    incluyecocina:incluyecocina
+  };
+  console.log(request);
+  make_post($http,request,exito,error,"Publicacions/crear");
 };
 var server_set_registrar = function($http,exito,error,correo,pass,rutUsu,numTel,direccion,nom,tipUsu,nomEmp,rutEmp,pagWeb,correoEmp){
   var request = {
@@ -22,7 +43,7 @@ var server_set_registrar = function($http,exito,error,correo,pass,rutUsu,numTel,
     direccion: direccion,
     nombre: nom,
     tipo: tipUsu,
-    nombreEmpresa: nomEmp,
+    nombreEmpresIngresara: nomEmp,
     rutEmpresa: rutEmp,
     paginaWeb: pagWeb,
     correoEmpresa: correoEmp
@@ -43,4 +64,13 @@ var server_set_calificacion = function($http,exito,error,idusuario,idpublicacion
     calificacion:calificacion
   };
   make_post($http,request,exito,error,"Calificacions/Ingresar");
+};
+var server_set_favoritos=function($http,exito,error,idusuario,idpublicacion,idempresa){
+  var request={
+    idusuario:idusuario,
+    idpublicacion:idpublicacion,
+    idempresa:idempresa
+  };
+  console.log(request);
+  make_post($http,request,exito,error,"Favoritos/Agregar");
 }

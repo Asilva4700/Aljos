@@ -94,7 +94,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "publicacion": {
+      "type": "belongsTo",
+      "model": "Publicacion",
+      "foreignKey": "idpublicacion"
+    }
+  },
   "acls": [],
   "methods": {}
 }
