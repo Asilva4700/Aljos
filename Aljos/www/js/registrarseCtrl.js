@@ -58,10 +58,11 @@ app_controllers.controller('registrarseCtrl', function($scope, $http, $statePara
     console.log('antes del if');
     if(data.correo != "" && data.pass != "" && data.rutUsu != "" && data.numTel != "" && data.direccion != "" && data.nom != ""){
       console.log('dentro del if');
-      server_get_registrar($http,function(data){
+      server_set_registrar($http,function(data){
         console.log('pase registrar');
         console.log(data.data.data);
-      },function(){});
+        //despues de error le pasamos los datos para que la variable request se la lleve al servicio
+      },function(){},data.correo,data.pass,data.rutUsu,data.numTel,data.direccion,data.nom,2);
     }
   };
   //informaciones

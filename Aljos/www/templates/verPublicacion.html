@@ -26,15 +26,17 @@
         <div>
           <p>Ingrese un comentario</p>
           <form name="comentario">
-            <input type="checkbox" name="vehicle" ng-model="vehicle" value="Bike"> I have a bike<br>
-            {{vehicle}}
-            <button type="button" class="button button-block button-positive" ng-click="submit(vehicle)">Submit</button>
+            <ionic-ratings style="font-size:30px;" ratingsobj='ratingsObject'></ionic-ratings>
+            <input type="text" name="descripcion" ng-model="descripcion" required>
+            <button type="button" class="button button-block button-positive" ng-click="submit(descripcion)">Submit</button>
           </form>
         </div>
         <div class="list card" ng-repeat='calificacion in calificaciones'>
           <div class="item item-body">
-            <p>{{calificacion.calificacion}}</p>
-            <p style="text-aling: right;">
+            <p class="item item-divider">{{calificacion.usuario.nombre}}</p>
+            <p>{{calificacion.fecha}}</p>
+            <p class="item item-text-wrap">{{calificacion.calificacion}}
+              <ion-icon icon-on="ion-ios-star" name="star"></ion-icon><br/>
               {{calificacion.descripcion}}
             </p>
         </div>

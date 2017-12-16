@@ -44,7 +44,7 @@ module.exports = function(Calificacion) {
     returns: {arg: 'data', type: 'object'}
   });
   Calificacion.Listar = function(idpublicacion, cb){
-    Calificacion.find({where:{idpublicacion:idpublicacion}},function(error,obj){
+    Calificacion.find({where:{idpublicacion:idpublicacion},include:['usuario']},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
         cb(null,{ok:true,data:obj});

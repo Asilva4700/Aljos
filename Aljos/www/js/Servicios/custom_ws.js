@@ -13,7 +13,7 @@ var server_get_publicaciones = function($http,exito,error){
   var request = {};
   make_post($http,request,exito,error,"Publicacions/listar");
 };
-var server_get_registrar = function($http,exito,error,correo,pass,rutUsu,numTel,direccion,nom,tipUsu,nomEmp,rutEmp,pagWeb,correoEmp){
+var server_set_registrar = function($http,exito,error,correo,pass,rutUsu,numTel,direccion,nom,tipUsu,nomEmp,rutEmp,pagWeb,correoEmp){
   var request = {
     correo: correo,
     contraseña: pass,
@@ -35,3 +35,12 @@ var server_get_calificaciones = function($http,exito,error,id){
   };
   make_post($http,request,exito,error,"Calificacions/listar");
 };
+var server_set_calificacion = function($http,exito,error,idusuario,idpublicacion,descripcion,calificacion){
+  var request={
+    idUsuario:idusuario,
+    idPublicacion:idpublicacion,
+    descripcion:descripcion,
+    calificacion:calificacion
+  };
+  make_post($http,request,exito,error,"Calificacions/Ingresar");
+}

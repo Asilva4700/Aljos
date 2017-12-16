@@ -129,6 +129,11 @@
       "type": "belongsTo",
       "model": "Publicacion",
       "foreignKey": "idpublicacion"
+    },
+    "usuario": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "idusuario"
     }
   },
   "acls": [],

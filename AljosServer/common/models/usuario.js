@@ -72,7 +72,6 @@ module.exports = function(Usuario) {
             var data=obj;
             if(error){cb(null,{ok:false,registrado:false,data:error});}
             else{
-              console.log(tipoUsuario);
               if(tipoUsuario==2 || tipoUsuario==1){
                 cb(null,{ok:true,data});
               }else{
