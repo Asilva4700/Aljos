@@ -1,5 +1,16 @@
 <ion-view view-title="Productos/Servicios">
-  <ion-content>
-    <h2>Productos/Servicios</h2>
+  <ion-content class="padding">
+    <ion-header>
+
+    </ion-header>
+    <div class="row">
+      <div class="col col-75">Nombres</div>
+      <div class="col">Precios</div>
+    </div>
+    <div class="row" ng-if="publicaciones" ng-repeat="publicacion in publicaciones" ng-click="ir_a(publicacion)">
+      <div class="col col-75">{{publicacion.productoservicio.nombre}}</div>
+      <div class="col">{{publicacion.productoservicio.precio}}</div>
+    </div>
+    
   </ion-content>
 </ion-view>

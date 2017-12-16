@@ -1,0 +1,44 @@
+<ion-view view-title="Productos/Servicios">
+  <ion-content class="padding">
+    <ion-header>
+      <h2>{{publicacion.productoservicio.nombre}}</h2>
+      <h5>{{publicacion.empresa.nombre}}</h5>
+    </ion-header>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat='img in listImg'>
+        <div class="item item-image">
+          <img src="{{img.ruta}}">
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <p>${{publicacion.productoservicio.precio}}</p>
+    <p>{{publicacion.descripcion}}</p>
+    <div ng-if="publicacion.productoservicio.idlocal">
+      <p>Direccion: {{publicacion.productoservicio.local.direccion}} {{publicacion.productoservicio.local.numeracion}}</p>
+      <p>Ciudad: {{publicacion.productoservicio.local.ciudad}}</p>
+      <p>Comuna: {{publicacion.productoservicio.local.comuna}}</p>
+      <p>Tamaño patio:{{publicacion.productoservicio.local.numeracion}}</p>
+      <p>Tamaño recinto: {{publicacion.productoservicio.local.numeracion}}</p>
+    </div>
+    <p>Preguntas frecuentes</p>
+    <div>
+        <h3>Calificaciones</h3>
+        <div>
+          <p>Ingrese un comentario</p>
+          <form name="comentario">
+            <input type="checkbox" name="vehicle" ng-model="vehicle" value="Bike"> I have a bike<br>
+            {{vehicle}}
+            <button type="button" class="button button-block button-positive" ng-click="submit(vehicle)">Submit</button>
+          </form>
+        </div>
+        <div class="list card" ng-repeat='calificacion in calificaciones'>
+          <div class="item item-body">
+            <p>{{calificacion.calificacion}}</p>
+            <p style="text-aling: right;">
+              {{calificacion.descripcion}}
+            </p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -2,20 +2,20 @@
 
 module.exports = function(Calificacion) {
   var app = require('../../server/server');
-  Calificacion.Ingresar = function(idusuario, idpublicacion, descripcion, calificacion, tipo, cb){
+  Calificacion.Ingresar = function(idusuario, idpublicacion, descripcion, calificacion, cb){
     var fecha = new Date();
     var calificacion={
       idusuario:idusuario,
       idpublicacion:idpublicacion,
       descripcion:descripcion,
       calificacion:calificacion,
-      tipo:tipo,
+      tipo:"Publicacion",
       fecha:fecha
     };
     Calificacion.create(calificacion,function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
-        
+
         cb(null,{ok:true,data:obj});
       }
     });
@@ -25,8 +25,7 @@ module.exports = function(Calificacion) {
       {arg: 'idUsuario', type: 'number', required: true},
       {arg: 'idPublicacion', type: 'number', required: true},
       {arg: 'descripcion', type: 'string', required: true},
-      {arg: 'calificacion', type: 'number', required: true},
-      {arg: 'tipo', type: 'string', required: true}
+      {arg: 'calificacion', type: 'number', required: true}
     ],
     returns: {arg: 'data', type: 'object'}
   });
