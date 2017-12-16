@@ -136,9 +136,18 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'estadisticasCtrl'
       }
     }
+  })
+  .state('tab.verpublicacion',{
+    url: '/verpublicacion/:data_publicacion?',
+    views:{
+      'tab-perfilUsuario':{
+        templateUrl:'templates/verPublicacion.html',
+        controller: 'verPublicacionCTRL'
+      }
+    }
   });
   //ng-if="logeado"
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/tab/perfilUsuario');
 
 });

@@ -1,7 +1,7 @@
 app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $state) {
   var myPopup;
   $scope.login = function() {
-    $scope.data = {}
+    /*$scope.data = {}
     // An elaborate, custom popup
     myPopup = $ionicPopup.show({
       template: 'Correo:<br><input type="text" ng-model="data.user"><br>Clave:<br>'+
@@ -42,7 +42,19 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
         },function(){},res.user,res.pass);
         console.log('Tapped!', res.user, 'y ', res.pass);
       }
-    });
+    });*/
+    server_get_login($http,function(data){
+      console.log(data.data.data);
+      $scope.resultado=data.data;
+      datosUsuario = data.data.data;
+      logeado = data.data.logeado;
+      $scope.logeado=logeado;
+      if(!data.data.logeado){
+        var alertPopup = $ionicPopup.alert({
+          template: data.data.data
+        });
+      }
+    },function(){},"homero@gmail.com","homero");
  };
  $scope.registroUsu = function() {
    myPopup.close();
