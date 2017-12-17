@@ -15,32 +15,38 @@
     </div>
     <br>
     <div>
-      <a class="button button-icon icon ion-pie-graph" ng-click="irEstadisticas()">
-        Estadisticas
-        <ion-nav-view name="tab-estadisticas"></ion-nav-view>
-      </a>
-      <a class="button button-icon icon ion-fork" ng-click="irMenu()">
-        Menú
-        <ion-nav-view name="tab-menu"></ion-nav-view>
-      </a>
-      <br>
-      <a class="button button-icon icon ion-ios-cart" ng-click="irProductosServicios()">
+      <div class="button-bar">
+        <a class="button button-icon icon ion-pie-graph" ng-click="irEstadisticas()">
+          Estadisticas
+          <ion-nav-view name="tab-estadisticas"></ion-nav-view>
+        </a>
+        <a class="button button-icon icon ion-fork" ng-click="irMenu()">
+          Menú
+          <ion-nav-view name="tab-menu"></ion-nav-view>
+        </a>
+      </div>
+      <a class="button button-block button-icon icon ion-ios-cart" ng-click="irProductosServicios()">
         Productos/Servicios
         <ion-nav-view name="tab-productosServicios"></ion-nav-view>
       </a>
-      <a class="button button-icon icon ion-ios-home" ng-click="irLocal()">
+      <a class="button button-block button-icon icon ion-ios-home" ng-click="irLocal()">
         Establecimiento
         <ion-nav-view name="tab-local"></ion-nav-view>
       </a>
-      <br>
-      <a class="button button-icon icon ion-help" ng-click="irPreguntasGenerales()">
+      <a class="button button-block button-icon icon ion-help" ng-click="irPreguntasGenerales()">
         Preguntas generales
         <ion-nav-view name="tab-preguntasGenerales"></ion-nav-view>
       </a>
-      <a class="button button-icon icon ion-android-favorite" ng-click="irFavoritos()">
-        Favoritos
-        <ion-nav-view name="tab-favoritos"></ion-nav-view>
-      </a>
+      <div class="button-bar" ng-show="empresa==usuario">
+
+        <a class="button button-icon icon ion-android-favorite" ng-click="irFavoritos()">
+          Favoritos
+          <ion-nav-view name="tab-favoritos"></ion-nav-view>
+        </a>
+      </div>
+      </div>
+      <br>
+      <br>
       <a class="button button-icon icon ion-log-out" ng-click="logOut()">Cerrar sesión</a>
     </div>
   </ion-content>

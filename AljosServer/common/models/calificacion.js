@@ -30,7 +30,7 @@ module.exports = function(Calificacion) {
     returns: {arg: 'data', type: 'object'}
   });
   Calificacion.Eliminar = function(id, cb){
-    Calificacion.destroyAll({id:id},function(error,obj){
+    Calificacion.destroyAll({idcalificacion:id},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
         cb(null,{ok:true,data:obj});

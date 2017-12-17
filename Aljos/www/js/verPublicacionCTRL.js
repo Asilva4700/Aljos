@@ -19,7 +19,6 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
         var fecha = new Date($scope.calificaciones[i].fecha);
         $scope.calificaciones[i].fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
       }
-
     },function(){},publicacion.id);
   });
   $scope.listImg = [{
@@ -41,7 +40,19 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
     ruta:"../img/perry.png"
   }];
   refresh=function(){
-    $scope.usuario=datosUsuario.empresa.id;
+    if(datosUsuario.empresa!=undefined){
+      $scope.usuario=datosUsuario.empresa.id;
+    }
+  };
+  refreshCalificacion=function(publicacion){
+    server_get_calificaciones($http,function(data){
+      console.log(data.data.data);
+      $scope.calificaciones=data.data.data;
+      for(var i=0;i<$scope.calificaciones.length;i++){
+        var fecha = new Date($scope.calificaciones[i].fecha);
+        $scope.calificaciones[i].fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+      }
+    },function(){},publicacion.id);
   };
   $scope.ratingsObject = {
     iconOn : 'ion-ios-star',
@@ -64,10 +75,11 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
   $scope.previous = function() {
     $ionicSlideBoxDelegate.previous();
   };
-  $scope.submit=function(descripcion){
+  $scope.submit=function(descripcion,publicacion){
     if(datosUsuario!=undefined){
       server_set_calificacion($http,function(data){
         console.log(data);
+        refreshCalificacion(publicacion);
       },function(){},datosUsuario.id,publicacion.id,descripcion,$scope.calificacion);
     }else{
       $scope.login();
@@ -95,7 +107,6 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
     }
   };
   $scope.eliminar=function(publicacion){
-    console.log(publicacion);
     for(var i=0;i<publicacion.calificacion.length;i++){
       server_set_eliminarCalificacion($http,function(data){
         console.log(data);
