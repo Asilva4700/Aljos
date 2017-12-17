@@ -30,18 +30,18 @@
       </ion-slide>
     </ion-slide-box>
     <!--El resto de las publicaciones-->
-    <div class="list card" ng-repeat='pub in publicacionesList'>
+    <div class="list card" ng-repeat='publicacion in publicacionesList'>
       <div class="item item-avatar">
         <img src="../img/perry.png">
-        <h2>{{pub.productoservicio.nombre}}</h2>
-        <p>{{pub.empresa.nombre}}</p>
+        <h2>{{publicacion.productoservicio.nombre}}</h2>
+        <p>{{publicacion.empresa.nombre}}</p>
         <p>calificación</p>
       </div>
-      <div class="item item-body">
-        <!-- <img width="40%" src="{{pub.ruta}}" style="float: left;"> -->
+      <div class="item item-body" ng-click='ir_a(publicacion)'>
+        <!-- <img width="40%" src="{{publicacion.ruta}}" style="float: left;"> -->
         <img width="40%" src="../img/imagen-de-prueba.jpg" style="float: left;">
         <p style="text-aling: right;">
-          {{pub.descripcion}}
+          {{publicacion.descripcion}}
         </p>
     </div>
   </div>

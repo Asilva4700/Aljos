@@ -24,11 +24,14 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http, $s
     ruta:"../img/perry.png"
   }];
   $scope.listImg = listImg;
-
   //lista de publicaciones
   server_get_publicaciones($http,function(data){
     //console.log(data.data.data.length);
     //console.log(data.data.data);
     $scope.publicacionesList = data.data.data;
   },function(){});
+  //ir a la pantalla de la publicacion
+  $scope.ir_a = function(publicacion){
+    $state.go('tab.home',{data_publicacion:JSON.stringify(publicacion)});
+  };
 });

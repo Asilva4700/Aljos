@@ -143,6 +143,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-ratings'])
       'tab-perfilUsuario':{
         templateUrl:'templates/verPublicacion.html',
         controller: 'verPublicacionCTRL'
+      }/*,
+      'tab-home': {
+        templateUrl: 'templates/verPublicacion.html',
+        controller: 'verPublicacionCTRL'
+      }*/
+    }
+  })
+  .state('tab.favoritos',{
+    url: '/favoritos',
+    views:{
+      'tab-perfilUsuario':{
+        templateUrl:'templates/favoritos.html',
+        controller: 'favoritosCtrl'
       }
     }
   });

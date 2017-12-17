@@ -28,7 +28,7 @@ var server_set_registrar = function($http,exito,error,correo,pass,rutUsu,numTel,
     correoEmpresa: correoEmp
   };
   make_post($http,request,exito,error,"Usuarios/registrar");
-}
+};
 var server_get_calificaciones = function($http,exito,error,id){
   var request={
     idPublicacion:id

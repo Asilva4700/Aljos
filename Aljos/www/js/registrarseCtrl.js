@@ -1,4 +1,4 @@
-app_controllers.controller('registrarseCtrl', function($scope, $http, $stateParams, $ionicPopup) {
+app_controllers.controller('registrarseCtrl', function($scope, $http, $stateParams, $ionicPopup, $state) {
   //Este try nos permite resibir la variable
   // notese el nombre de la variable data_registro
   //es el mismo nombre en buscarCtrl y app.js
@@ -55,14 +55,17 @@ app_controllers.controller('registrarseCtrl', function($scope, $http, $statePara
       };
     }
     console.log(data);
-    console.log('antes del if');
     if(data.correo != "" && data.pass != "" && data.rutUsu != "" && data.numTel != "" && data.direccion != "" && data.nom != ""){
-      console.log('dentro del if');
       server_set_registrar($http,function(data){
-        console.log('pase registrar');
-        console.log(data.data.data);
+        console.log(data.data);
+        if(data.data.ok){
+          var alertPopup = $ionicPopup.alert({
+            template: 'Ahora podras iniciar sesion con tu correo personal y tu clave.'
+          });
+          $state.go('tab.home',{});
+        }
         //despues de error le pasamos los datos para que la variable request se la lleve al servicio
-      },function(){},data.correo,data.pass,data.rutUsu,data.numTel,data.direccion,data.nom,2);
+      },function(){},data.correo,data.pass,data.rutUsu,data.numTel,data.direccion,data.nom,data.tipUsu,data.nomEmp,data.rutEmp,data.pagWeb,data.correoEmp);
     }
   };
   //informaciones
