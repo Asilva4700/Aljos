@@ -1,8 +1,8 @@
-<ion-view view-title="Productos/Servicios">
+<ion-view view-title="">
   <ion-content class="padding">
     <ion-header>
       <h2>{{publicacion.productoservicio.nombre}}</h2>
-      <h5>{{publicacion.empresa.nombre}}</h5>
+      <h5>{{publicacion.empresa.nombre}} <button ng-click="agregar()" class="button icon-left ion-star button-positive">Favoritos</button></h5>
     </ion-header>
     <ion-slide-box on-slide-changed="slideHasChanged($index)">
       <ion-slide ng-repeat='img in listImg'>
@@ -20,17 +20,20 @@
       <p>Tamaño patio:{{publicacion.productoservicio.local.numeracion}}</p>
       <p>Tamaño recinto: {{publicacion.productoservicio.local.numeracion}}</p>
     </div>
-    <p>Preguntas frecuentes</p>
+    <div>
+      <h3>Preguntas frecuentes</h3>
+    </div>
     <div>
         <h3>Calificaciones</h3>
         <div>
           <p>Ingrese un comentario</p>
           <form name="comentario">
-            <ionic-ratings style="font-size:30px;" ratingsobj='ratingsObject'></ionic-ratings>
-            <input type="text" name="descripcion" ng-model="descripcion" required>
+            Calificar: <ionic-ratings style="font-size:30px;" ratingsobj='ratingsObject'></ionic-ratings>
+            Descripción: <input type="text" name="descripcion" ng-model="descripcion" required>
             <button type="button" class="button button-block button-positive" ng-click="submit(descripcion)">Submit</button>
           </form>
         </div>
+        <p>Comentarios anteriores</p>
         <div class="list card" ng-repeat='calificacion in calificaciones'>
           <div class="item item-body">
             <p class="item item-divider">{{calificacion.usuario.nombre}}</p>

@@ -123,8 +123,8 @@ module.exports = function(Publicacion) {
     ],
     returns: {arg: 'data', type: 'object'}
   });
-  Publicacion.listar = function(cb){
-    Publicacion.find({include:[
+  Publicacion.listar = function(id,cb){
+    Publicacion.find({where:{idempresa:id},include:[
       {
         relation:'productoservicio',
         scope:{
@@ -148,7 +148,9 @@ module.exports = function(Publicacion) {
     });
   };
   Publicacion.remoteMethod('listar',{
-    accepts:[],
+    accepts:[
+    {arg: 'idEmpresa', type: 'number', required: false}
+  ],
     returns: {arg: 'data', type: 'object'}
   });
   Publicacion.eliminar = function(id,idproducto,idlocal,idimagen,cb){

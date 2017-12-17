@@ -1,0 +1,54 @@
+<ion-view view-title="Publicación nueva">
+  <ion-content class="padding">
+    <ion-header>
+
+    </ion-header>
+    <form name="publicacion">
+      <ion-checkbox ng-if="local" name="patio" ng-model="patio" ng-click="cambiar('patio')">¿Incluye patio?</ion-checkbox>
+      <ion-checkbox ng-if="local" name="cocina" ng-model="cocina" ng-click="cambiar('cocina')">¿Incluye Cocina?</ion-checkbox>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nombre<a style="color:red">*</a></span>
+        <input type="text" name="nombre" ng-model="nombre" required>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Precio<a style="color:red">*</a></span>
+        <input type="number" name="precio" ng-model="precio" required>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Descripcion<a style="color:red">*</a></span>
+        <input type="text" name="descripcion" ng-model="descripcion" required>
+      </label>
+      <label ng-if="!menu && !local" class="item item-input item-stacked-label">
+        <span class="input-label">Cantidad que se incluyen<a style="color:red">*</a></span>
+        <input type="number" name="cantidad" ng-model="cantidad" required>
+        <input type="range" ng-model="cantidad">
+      </label>
+      <!-- Local -->
+      <label ng-if="local" class="item item-input item-stacked-label">
+        <span class="input-label">Direccion<a style="color:red">*</a></span>
+        <input type="text" name="direccion" ng-model="direccion" required>
+      </label>
+      <label ng-if="local" class="item item-input item-stacked-label">
+        <span class="input-label">Numeración<a style="color:red">*</a></span>
+        <input type="number" name="numeracion" ng-model="numeracion" required>
+      </label>
+      <label ng-if="local" class="item item-input item-stacked-label">
+        <span class="input-label">Ciudad<a style="color:red">*</a></span>
+        <input type="text" name="ciudad" ng-model="ciudad" required>
+      </label>
+      <label ng-if="local" class="item item-input item-stacked-label">
+        <span class="input-label">Comuna<a style="color:red">*</a></span>
+        <input type="text" name="comuna" ng-model="comuna" required>
+      </label>
+      <label ng-if="local" class="item item-input item-stacked-label">
+        <span class="input-label">Tamaño del recinto (en metros cuadrados)<a style="color:red">*</a></span>
+        <input type="number" name="tamanorecinto" ng-model="tamanorecinto" required>
+      </label>
+      <label ng-if="local && patio" class="item item-input item-stacked-label">
+        <span class="input-label">Tamaño del patio (en metros cuadrados)<a style="color:red">*</a></span>
+        <input type="number" name="tamanopatio" ng-model="tamanopatio" required>
+      </label>
+      <button type="button" class="button button-block button-positive" ng-click="submit(nombre,precio,descripcion,cantidad,direccion,numeracion,ciudad,comuna,tamanorecinto,incluyepatio,tamanopatio,incluyecocina)">Submit</button>
+    </form>
+  </ion-content>
+</ion-view>

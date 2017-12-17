@@ -120,7 +120,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-ratings'])
     }
   })
   .state('tab.productosServicios',{
-    url: '/productosServicios',
+    url: '/productosServicios/:data_publicacion?',
     views:{
       'tab-perfilUsuario':{
         templateUrl:'templates/productosServicios.html',
@@ -156,6 +156,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-ratings'])
       'tab-perfilUsuario':{
         templateUrl:'templates/favoritos.html',
         controller: 'favoritosCtrl'
+      }
+    }
+  })
+  .state('tab.agregarpublicacion',{
+    url: '/agregarpublicacion/:data_publicacion?',
+    views:{
+      'tab-perfilUsuario':{
+        templateUrl:'templates/agregarPublicacion.html',
+        controller: 'agregarPublicacionCTRL'
       }
     }
   });

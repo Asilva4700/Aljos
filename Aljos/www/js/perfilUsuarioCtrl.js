@@ -12,15 +12,15 @@ app_controllers.controller('perfilUsuarioCtrl', function($scope, $http, $state) 
   };
   //ir a menu
   $scope.irMenu = function(){
-    $state.go('tab.menu',{});
+    $state.go('tab.productosServicios',{data_publicacion:"Menús"});
   };
   //ir a productosServicios
   $scope.irProductosServicios = function(){
-    $state.go('tab.productosServicios',{});
+    $state.go('tab.productosServicios',{data_publicacion:"Productos y servicios"});
   };
   //ir a local
   $scope.irLocal = function(){
-    $state.go('tab.local',{});
+    $state.go('tab.productosServicios',{data_publicacion:"Establecimientos"});
   };
   //ir a preguntasGenerales
   $scope.irPreguntasGenerales = function(){

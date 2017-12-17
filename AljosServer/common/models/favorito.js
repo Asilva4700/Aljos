@@ -12,7 +12,7 @@ module.exports = function(Favorito) {
     Favorito.create(favorito,function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
-        cb(nu1ll,{ok:true,data:obj});
+        cb(null,{ok:true,data:obj});
       }
     });
   };
@@ -39,7 +39,28 @@ module.exports = function(Favorito) {
     returns: {arg: 'data', type: 'object'}
   });
   Favorito.Listar = function(idusuario,cb){
-    Favorito.find({where:{idusuario:idusuario}},function(error,obj){
+    Favorito.find({where:{idusuario:idusuario},include:{
+      relation:"publicacion",
+      scope:{
+        include:[
+          {
+            relation:'productoservicio',
+            scope:{
+              include:['local']
+            }
+          },{
+            relation:'empresa',
+            scope:{}
+          },{
+            relation:'imagen',
+            scope:{}
+          },{
+            relation:'calificacion',
+            scope:{}
+          }
+        ]
+      }
+    }},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
         cb(null,{ok:true,data:obj});
