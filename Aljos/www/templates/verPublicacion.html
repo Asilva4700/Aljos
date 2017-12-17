@@ -23,17 +23,25 @@
     <div>
       <h3>Preguntas frecuentes</h3>
     </div>
+    <div ng-show="empresa!=usuario">
+      <button ng-click="cotizar()" class="button button-block button-positive">
+        Solicitar cotización
+      </button>
+    </div>
+    <div class="button-bar" ng-show="empresa==usuario">
+      <a class="button button-positive" ng-click="ir_a(publicacion)">Editar</a>
+      <a class="button button-assertive"ng-click="eliminar(publicacion)">Eliminar</a>
+    </div>
     <div>
         <h3>Calificaciones</h3>
-        <div>
+        <div ng-show="empresa!=usuario">
           <p>Ingrese un comentario</p>
           <form name="comentario">
             Calificar: <ionic-ratings style="font-size:30px;" ratingsobj='ratingsObject'></ionic-ratings>
             Descripción: <input type="text" name="descripcion" ng-model="descripcion" required>
-            <button type="button" class="button button-block button-positive" ng-click="submit(descripcion)">Submit</button>
+            <button type="button" class="button button-block button-positive" ng-click="submit(descripcion)">Agregar comentario</button>
           </form>
         </div>
-        <p>Comentarios anteriores</p>
         <div class="list card" ng-repeat='calificacion in calificaciones'>
           <div class="item item-body">
             <p class="item item-divider">{{calificacion.usuario.nombre}}</p>

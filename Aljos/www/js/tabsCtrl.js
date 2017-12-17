@@ -1,4 +1,4 @@
-app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $state) {
+app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $state, $ionicHistory) {
   var myPopup;
   $scope.login = function() {
     $scope.data = {}
@@ -53,6 +53,8 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
         var alertPopup = $ionicPopup.alert({
           template: data.data.data
         });
+      }else{
+        refresh();
       }
     },function(){},"homero@gmail.com","homero");*/
  };

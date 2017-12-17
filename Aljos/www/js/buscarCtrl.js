@@ -32,6 +32,6 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http, $s
   },function(){});
   //ir a la pantalla de la publicacion
   $scope.ir_a = function(publicacion){
-    $state.go('tab.home',{data_publicacion:JSON.stringify(publicacion)});
+    $state.go('tab.verpublicacionhome',{data_publicacion:JSON.stringify(publicacion)});
   };
 });

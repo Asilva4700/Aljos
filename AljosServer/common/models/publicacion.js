@@ -47,7 +47,7 @@ module.exports = function(Publicacion) {
                   var Imagen=app.models.Imagen;
                   var imagen={
                     idpublicacion:datapubli.id,
-                    ruta:"",
+                    ruta:"prueba",
                     fecha:fecha
                   }
                   Imagen.create(imagen,function(error,obj){
@@ -188,7 +188,7 @@ module.exports = function(Publicacion) {
       {arg: 'id', type: 'number', required: true},
       {arg: 'idproducto', type: 'number', required: true},
       {arg: 'idlocal', type: 'number', required: false},
-      {arg: 'idimagen', type: 'number', required: true}
+      {arg: 'idimagen', type: 'number', required: false}
     ],
     returns: {arg: 'data', type: 'object'}
   });
