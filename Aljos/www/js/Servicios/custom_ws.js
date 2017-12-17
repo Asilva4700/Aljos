@@ -31,8 +31,39 @@ var server_set_publicacion = function($http,exito,error,idempresa,nombre,precio,
     tamanopatio:tamanopatio,
     incluyecocina:incluyecocina
   };
-  console.log(request);
   make_post($http,request,exito,error,"Publicacions/crear");
+};
+var server_set_editarPublicacion = function($http,exito,error,idpublicacion,idproducto,idlocal,nombre,precio,descripcion,cantidad,menu,local,direccion,numeracion,ciudad,comuna,tamanorecinto,incluyepatio,tamanopatio,incluyecocina){
+  var request={
+    idPublicacion:idpublicacion,
+    idProducto:idproducto,
+    idLocal:idlocal,
+    descripcion:descripcion,
+    cantidad:cantidad,
+    nombre:nombre,
+    precio:precio,
+    menu:menu,
+    local:local,
+    direccion:direccion,
+    numeracion:numeracion,
+    ciudad:ciudad,
+    comuna:comuna,
+    tamanorecinto:tamanorecinto,
+    incluyepatio:incluyepatio,
+    tamanopatio:tamanopatio,
+    incluyecocina:incluyecocina,
+    idImagen:1,
+    rutaImagen:"prueba"
+  };
+  make_post($http,request,exito,error,"Publicacions/editar");
+};
+var server_set_eliminarPublicacion = function($http,exito,error,idpublicacion,idproducto,idlocal){
+  var request={
+    id:idpublicacion,
+    idproducto:idproducto,
+    idlocal:idlocal
+  };
+  make_post($http,request,exito,error,"Publicacions/eliminar");
 };
 var server_set_registrar = function($http,exito,error,correo,pass,rutUsu,numTel,direccion,nom,tipUsu,nomEmp,rutEmp,pagWeb,correoEmp){
   var request = {
@@ -65,13 +96,18 @@ var server_set_calificacion = function($http,exito,error,idusuario,idpublicacion
   };
   make_post($http,request,exito,error,"Calificacions/Ingresar");
 };
+var server_set_eliminarCalificacion = function($http,exito,error,id){
+  var request={
+    id:id
+  };
+  make_post($http,request,exito,error,"Calificacions/Eliminar");
+};
 var server_set_favoritos=function($http,exito,error,idusuario,idpublicacion,idempresa){
   var request={
     idusuario:idusuario,
     idpublicacion:idpublicacion,
     idempresa:idempresa
   };
-  console.log(request);
   make_post($http,request,exito,error,"Favoritos/Agregar");
 };
 var server_get_favoritos = function($http,exito,error,idUsu){
