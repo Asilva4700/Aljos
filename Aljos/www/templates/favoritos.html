@@ -1,5 +1,20 @@
 <ion-view view-title="Favoritos">
   <ion-content class="padding">
     <h2>Favoritos</h2>
+    <div class="list card" ng-repeat='publicacion in publicacionesList'>
+      <div class="item item-avatar">
+        <img src="../img/perry.png">
+        <h2>{{publicacion.publicacion.productoservicio.nombre}}</h2>
+        <p>{{publicacion.publicacion.empresa.nombre}}</p>
+        <p>calificación</p>
+      </div>
+      <div class="item item-body">
+        <!-- <img width="40%" src="{{publicacion.ruta}}" style="float: left;"> -->
+        <img width="40%" src="../img/imagen-de-prueba.jpg" style="float: left;">
+        <p style="text-aling: right;">
+          {{publicacion.publicacion.descripcion}}
+        </p>
+    </div>
+  </div>
   </ion-content>
 </ion-view>

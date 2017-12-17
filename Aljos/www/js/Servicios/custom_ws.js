@@ -73,4 +73,10 @@ var server_set_favoritos=function($http,exito,error,idusuario,idpublicacion,idem
   };
   console.log(request);
   make_post($http,request,exito,error,"Favoritos/Agregar");
-}
+};
+var server_get_favoritos = function($http,exito,error,idUsu){
+  var request = {
+    idusuario:idUsu
+  };
+  make_post($http,request,exito,error,"Favoritos/Listar");
+};
