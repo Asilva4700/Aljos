@@ -24,7 +24,7 @@ app_controllers.controller('perfilUsuarioCtrl', function($scope, $http, $state) 
   };
   //ir a preguntasGenerales
   $scope.irPreguntasGenerales = function(){
-    $state.go('tab.preguntasGenerales',{});
+    //$state.go('tab.preguntasGenerales',{});
   };
   //ir a favoritos
   $scope.irFavoritos = function() {

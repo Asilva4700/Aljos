@@ -8,15 +8,18 @@
           <input ng-model="filtro" type="search" ng-change="crearFiltro(filtro)" placeholder="Buscar">
         </label>
       </div>
-      <br>
       <!--Filtros-->
-      Filtros:<br>
-      <div class="button-bar">
-        <a class="button"><font size="1">Nombre</font></a>
-        <a class="button"><font size="1">Calificación</font></a>
-        <a class="button"><font size="1">Precio</font></a>
-        <a class="button"><font size="1">Tipo</font></a>
-      </div>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Ordenar por:<br>
+          <select>
+            <option ng-click="ordenar(publicacionesList,'nombre')">Nombre</option>
+            <option>Calificación</option>
+            <option ng-click="ordenar(publicacionesList,'precio')">Precio</option>
+            <option>Tipo</option>
+          </select>
+        </div>
+      </label>
     </ion-header>
     <!--Slide box for top 10 vip-->
     <ion-slide-box on-slide-changed="slideHasChanged($index)">
@@ -32,7 +35,7 @@
         <img src="../img/perry.png">
         <h2>{{publicacion.productoservicio.nombre}}</h2>
         <p>{{publicacion.empresa.nombre}}</p>
-        <p>calificación</p>
+        <p>Precio: ${{publicacion.productoservicio.precio}}</p>
       </div>
       <div class="item item-body" ng-click='ir_a(publicacion)'>
         <!-- <img width="40%" src="{{publicacion.ruta}}" style="float: left;"> -->

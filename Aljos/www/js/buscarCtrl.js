@@ -47,6 +47,9 @@ app_controllers.controller('buscarCtrl', function($scope, $ionicPopup, $http, $s
       }
     }
   };
+  $scope.ordenar=function(publicaciones, tipo){
+    
+  };
   $scope.filtrar=function(publicacion){
     if(publicacion.filtro==true || publicacion.filtro==undefined){
       return true;

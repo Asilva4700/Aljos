@@ -68,6 +68,17 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
       for(var i=0;i<$scope.calificaciones.length;i++){
         var fecha = new Date($scope.calificaciones[i].fecha);
         $scope.calificaciones[i].fecha=(fecha.getDate()+1)+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        $scope.calificaciones[i].estrellas = {
+          iconOn : 'ion-ios-star',
+          iconOff : 'ion-ios-star-outline',
+          iconOnColor: 'rgb(200, 200, 100)',
+          iconOffColor:  'rgb(200, 100, 100)',
+          rating:  $scope.calificaciones[i].calificacion,
+          readOnly: true,
+          callback: function(rating) {
+            $scope.ratingsCallback(rating);
+          }
+        };
       }
     },function(){},publicacion.id);
   };

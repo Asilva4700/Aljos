@@ -3,13 +3,13 @@
     <ion-header>
 
     </ion-header>
-    <div class="row">
-      <div class="col col-75">Nombres</div>
+    <div class="row" style="border: 1px solid #000000;">
+      <div class="col">Nombres</div>
       <div class="col">Precios</div>
     </div>
-    <div class="row" ng-if="publicaciones" ng-repeat="publicacion in publicaciones" ng-click="ir_a(publicacion)">
+    <div class="row" style="border: 1px solid #000000; margin:0px;" ng-if="publicaciones" ng-repeat="publicacion in publicaciones" ng-click="ir_a(publicacion)">
       <div class="col col-75">{{publicacion.productoservicio.nombre}}</div>
-      <div class="col">{{publicacion.productoservicio.precio}}</div>
+      <div class="col">${{publicacion.productoservicio.precio}}</div>
     </div>
     <button ng-click="agregar()" class="button button-block button-positive">Agregar</button>
   </ion-content>
