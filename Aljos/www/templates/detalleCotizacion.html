@@ -1,20 +1,53 @@
 <ion-view view-title="Detalle">
   <ion-content>
     <h2>{{cotizacion.publicacion.productoservicio.nombre}}</h2>
-    Fecha: {{cotizacion.fecha}}<br>
-    Total: ${{cotizacion.total}}<br>
-    Descripcion: {{cotizacion.publicacion.descripcion}}<br><br>
+    <div class="row">
+      <div class="col">Fecha:</div>
+      <div class="col">{{cotizacion.fecha}}</div>
+    </div>
+    <div class="row">
+      <div class="col">Total:</div>
+      <div class="col">${{cotizacion.total}}</div>
+    </div>
+    <div class="row">
+      <div class="col">Descripcion:</div>
+      <div class="col">{{cotizacion.publicacion.descripcion}}</div>
+    </div>
     <div ng-if="usuario.idtipousuario == 1 || usuario.idtipousuario == 2">
-      Empresa: {{cotizacion.publicacion.empresa.nombre}}<br>
-      Rut: {{cotizacion.publicacion.empresa.rut}}<br>
-      Correo: {{cotizacion.publicacion.empresa.correo}}<br>
-      Pagina Web: {{cotizacion.publicacion.empresa.paginaweb}}<br>
+      <div class="row">
+        <div class="col">Empresa:</div>
+        <div class="col">{{cotizacion.publicacion.empresa.nombre}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Rut:</div>
+        <div class="col">{{cotizacion.publicacion.empresa.rut}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Correo:</div>
+        <div class="col">{{cotizacion.publicacion.empresa.correo}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Pagina Web:</div>
+        <div class="col">{{cotizacion.publicacion.empresa.paginaweb}}</div>
+      </div>
     </div>
     <div ng-if="usuario.idtipousuario != 1 && usuario.idtipousuario != 2">
-      Nombre: {{cotizacion.usuario.nombre}}<br>
-      Rut: {{cotizacion.usuario.rut}}<br>
-      Correo: {{cotizacion.usuario.correo}}<br>
-      N°Telefonico: {{cotizacion.usuario.numerotelefono}}<br>
+      <div class="row">
+        <div class="col">Nombre:</div>
+        <div class="col">{{cotizacion.usuario.nombre}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Rut:</div>
+        <div class="col">{{cotizacion.usuario.rut}}</div>
+      </div>
+      <div class="row">
+        <div class="col">Correo:</div>
+        <div class="col">{{cotizacion.usuario.correo}}</div>
+      </div>
+      <div class="row">
+        <div class="col">N°Telefonico:</div>
+        <div class="col">{{cotizacion.usuario.numerotelefono}}</div>
+      </div>
     </div>
   </ion-content>
 </ion-view>
