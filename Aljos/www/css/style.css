@@ -1,4 +1,14 @@
+<<<<<<< HEAD
+.ionic_ratings .read_only {
+    pointer-events:none !important;
+  }
+.boton {
+  width: auto;
+  margin: 2px 0px 0px 0px;
+}
+=======
 /* Empty. Add your own CSS if you like */
 .ionic_ratings .read_only {
     pointer-events:none !important;
   }
+>>>>>>> 6ca707d58190f8d6ff40d604050dcb9542a0b265
