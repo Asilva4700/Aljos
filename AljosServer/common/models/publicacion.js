@@ -155,27 +155,45 @@ module.exports = function(Publicacion) {
   });
   Publicacion.eliminar = function(id,idproducto,idlocal,idimagen,cb){
     var Imagen=app.models.Imagen;
-    Imagen.destroyAll({id:idimagen},function(error,obj){
+    var Favorito=app.models.Favorito;
+    Favorito.destroyAll({idpublicacion:id},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}
       else{
-        Publicacion.destroyAll({id:id},function(error,obj){
+        var Pago=app.models.Pago;
+        Pago.destroyAll({idpublicacion:id},function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
           else{
-            var Productoservicio = app.models.Productoservicio;
-            Productoservicio.destroyAll({id:idproducto},function(error,obj){
+            var Cotizacion=app.models.Cotizacion;
+            Cotizacion.destroyAll({idpublicacion:id},function(error,obj){
               if(error){cb(null,{ok:false,data:error});}
               else{
-                if(idlocal==null){
-                  cb(null,{ok:true,data:obj});
-                }else{
-                  var Local = app.models.Local;
-                  Local.destroyAll({id:idlocal},function(error,obj){
-                    if(error){cb(null,{ok:false,data:error});}
-                    else{
-                      cb(null,{ok:true,data:obj});
-                    }
-                  });
-                }
+                Imagen.destroyAll({id:idimagen},function(error,obj){
+                  if(error){cb(null,{ok:false,data:error});}
+                  else{
+                    Publicacion.destroyAll({id:id},function(error,obj){
+                      if(error){cb(null,{ok:false,data:error});}
+                      else{
+                        var Productoservicio = app.models.Productoservicio;
+                        Productoservicio.destroyAll({id:idproducto},function(error,obj){
+                          if(error){cb(null,{ok:false,data:error});}
+                          else{
+                            if(idlocal==null){
+                              cb(null,{ok:true,data:obj});
+                            }else{
+                              var Local = app.models.Local;
+                              Local.destroyAll({id:idlocal},function(error,obj){
+                                if(error){cb(null,{ok:false,data:error});}
+                                else{
+                                  cb(null,{ok:true,data:obj});
+                                }
+                              });
+                            }
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
               }
             });
           }

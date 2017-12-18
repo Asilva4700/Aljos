@@ -176,14 +176,14 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `aljos`.`calificacion` ;
 
 CREATE TABLE IF NOT EXISTS `aljos`.`calificacion` (
-  `idCalificacion` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `idPublicacion` INT(11) NOT NULL,
   `idUsuario` INT(11) NOT NULL,
   `fecha` DATE NOT NULL,
   `descripcion` VARCHAR(400) NOT NULL,
   `calificacion` INT(11) NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idCalificacion`),
+  PRIMARY KEY (`id`),
   INDEX `idPublicacion` (`idPublicacion` ASC),
   INDEX `idUsuario` (`idUsuario` ASC),
   CONSTRAINT `comentario_ibfk_1`
@@ -248,7 +248,6 @@ CREATE TABLE IF NOT EXISTS `aljos`.`encuesta` (
   `numeroEncuesta` INT(11) NOT NULL,
   `usuario_id` INT(11) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `Encuestacol_UNIQUE` (`respuesta` ASC),
   INDEX `fk_Encuesta_usuario1_idx` (`usuario_id` ASC),
   CONSTRAINT `fk_Encuesta_usuario1`
     FOREIGN KEY (`usuario_id`)
@@ -267,8 +266,8 @@ DROP TABLE IF EXISTS `aljos`.`favorito` ;
 CREATE TABLE IF NOT EXISTS `aljos`.`favorito` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` INT(11) NOT NULL,
-  `idPublicacion` INT(11) NOT NULL,
-  `idEmpresa` INT(11) NOT NULL,
+  `idPublicacion` INT(11) NULL,
+  `idEmpresa` INT(11) NULL,
   `fecha` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `idUsuario` (`idUsuario` ASC),
@@ -299,12 +298,12 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `aljos`.`imagen` ;
 
 CREATE TABLE IF NOT EXISTS `aljos`.`imagen` (
-  `idImagen` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `idPublicacion` INT(11) NULL DEFAULT NULL,
   `idUsuario` INT(11) NULL DEFAULT NULL,
   `ruta` VARCHAR(400) NOT NULL,
   `fecha` DATE NOT NULL,
-  PRIMARY KEY (`idImagen`),
+  PRIMARY KEY (`id`),
   INDEX `idPublicacion` (`idPublicacion` ASC),
   INDEX `idUsuario` (`idUsuario` ASC),
   CONSTRAINT `imagen_ibfk_1`
@@ -329,18 +328,18 @@ DROP TABLE IF EXISTS `aljos`.`pago` ;
 CREATE TABLE IF NOT EXISTS `aljos`.`pago` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `estado` VARCHAR(45) NOT NULL,
-  `usuario_id` INT(11) NOT NULL,
-  `cotizacion_id` INT(11) NOT NULL,
+  `idUsuario` INT(11) NOT NULL,
+  `idCotizacion` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Pago_usuario1_idx` (`usuario_id` ASC),
-  INDEX `fk_Pago_cotizacion1_idx` (`cotizacion_id` ASC),
+  INDEX `fk_Pago_usuario1_idx` (`idUsuario` ASC),
+  INDEX `fk_Pago_cotizacion1_idx` (`idCotizacion` ASC),
   CONSTRAINT `fk_Pago_cotizacion1`
-    FOREIGN KEY (`cotizacion_id`)
+    FOREIGN KEY (`idCotizacion`)
     REFERENCES `aljos`.`cotizacion` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Pago_usuario1`
-    FOREIGN KEY (`usuario_id`)
+    FOREIGN KEY (`idUsuario`)
     REFERENCES `aljos`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

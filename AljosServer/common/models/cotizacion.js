@@ -19,7 +19,7 @@ module.exports = function(Cotizacion) {
         var Pago = app.models.Pago;
         var pago={
           idcotizacion:dataCotizacion.id,
-          estado:"pendiente",
+          estado:"Pendiente",
           idusuario:idUsuario
         };
         Pago.create(pago,function(error,obj){

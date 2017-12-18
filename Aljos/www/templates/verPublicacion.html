@@ -2,7 +2,7 @@
   <ion-content class="padding">
     <ion-header>
       <h2>{{publicacion.productoservicio.nombre}}</h2>
-      <h5>{{publicacion.empresa.nombre}} <button ng-click="agregar()" class="button icon-left ion-star button-positive">Favoritos</button></h5>
+      <h5>{{publicacion.empresa.nombre}} <button ng-click="agregar(publicacion)" class="button icon-left ion-star button-positive">Favoritos</button></h5>
     </ion-header>
     <ion-slide-box on-slide-changed="slideHasChanged($index)">
       <ion-slide ng-repeat='img in listImg'>
@@ -39,7 +39,7 @@
           <form name="comentario">
             Calificar: <ionic-ratings style="font-size:30px;" ratingsobj='ratingsObject'></ionic-ratings>
             Descripción: <input type="text" name="descripcion" ng-model="descripcion" required>
-            <button type="button" class="button button-block button-positive" ng-click="submit(descripcion)">Agregar comentario</button>
+            <button type="button" class="button button-block button-positive" ng-click="submit(descripcion,publicacion)">Agregar comentario</button>
           </form>
         </div>
         <div class="list card" ng-repeat='calificacion in calificaciones'>

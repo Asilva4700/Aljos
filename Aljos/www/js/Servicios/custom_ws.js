@@ -110,6 +110,12 @@ var server_set_favoritos=function($http,exito,error,idusuario,idpublicacion,idem
   };
   make_post($http,request,exito,error,"Favoritos/Agregar");
 };
+var server_set_eliminarFavoritos=function($http,exito,error,id){
+  var request={
+    id:id
+  };
+  make_post($http,request,exito,error,"Favoritos/Quitar");
+};
 var server_get_favoritos = function($http,exito,error,idUsu){
   var request = {
     idusuario:idUsu
