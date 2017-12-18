@@ -44,14 +44,14 @@ module.exports = function(Cotizacion) {
     if(idusuario==null && idempresa==null){
       cb(null,{ok:false,data:"Al menos 1 campo debe tener un valor"});
     }else{
-      if(tipo==="usuario"){
+      if(tipo==2){
         Cotizacion.find({where:{idusuario:idusuario}},function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
           else{
             cb(null,{ok:true,data:obj,tipo});
           }
         });
-      }else if(tipo==="empresa" || tipo==="vip" || tipo==="vipvideo"){
+      }else if(tipo!=2 && tipo!=1){
         Cotizacion.find({where:{idempresa:idempresa}},function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
           else{
@@ -65,7 +65,7 @@ module.exports = function(Cotizacion) {
     accepts:[
       {arg: 'idUsuario', type: 'number', required: false},
       {arg: 'idEmpresa', type: 'number', required: false},
-      {arg: 'tipo', type: 'string', required: true}
+      {arg: 'tipo', type: 'number', required: true}
     ],
     returns: {arg: 'data', type: 'object'}
   });
