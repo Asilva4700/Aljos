@@ -2,7 +2,7 @@
   <ion-content class="padding">
     <ion-header>
       <h2>{{publicacion.productoservicio.nombre}}</h2>
-      <h5>{{publicacion.empresa.nombre}} <button ng-click="agregar()" class="button icon-left ion-star button-positive">Favoritos</button></h5>
+      <h5>{{publicacion.empresa.nombre}} <button ng-click="agregar(publicacion)" class="button icon-left ion-star button-positive">Favoritos</button></h5>
     </ion-header>
     <ion-slide-box on-slide-changed="slideHasChanged($index)">
       <ion-slide ng-repeat='img in listImg'>

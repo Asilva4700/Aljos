@@ -56,7 +56,7 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
       }else{
         refresh();
       }
-    },function(){},"homero@gmail.com","homero");
+    },function(){},"justo@gmail.com","justo");
  };
  $scope.registroUsu = function() {
    myPopup.close();

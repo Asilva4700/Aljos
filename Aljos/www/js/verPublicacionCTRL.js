@@ -85,10 +85,39 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
       $scope.login();
     }
   };
-  $scope.agregar=function(){
-    server_set_favoritos($http,function(data){
+  eliminarFavorito=function(id){
+    server_set_eliminarFavoritos($http,function(data){
       console.log(data);
-    },function(){},datosUsuario.id,$scope.publicacion.id)
+    },function(){},id);
+  }
+  $scope.agregar=function(publicacion){
+    if(datosUsuario!=undefined){
+      server_get_favoritos($http,function(data){
+        console.log(data.data.data);
+        var favoritos=data.data.data;
+        for(var i=0;i<favoritos.length;i++){
+          if(favoritos[i].idusuario==datosUsuario.id && favoritos[i].idpublicacion==publicacion.id){
+            eliminarFavorito(favoritos[i].id);
+            i=favoritos.length;
+          }else if(favoritos[i].idpublicacion==publicacion.id && (i+1)==favoritos.length){
+            server_set_favoritos($http,function(data){
+              console.log(data);
+            },function(){},datosUsuario.id,$scope.publicacion.id);
+          }else if((i+1)==favoritos.length){
+            server_set_favoritos($http,function(data){
+              console.log(data);
+            },function(){},datosUsuario.id,$scope.publicacion.id);
+          }
+        }
+        if(favoritos.length==0){
+          server_set_favoritos($http,function(data){
+            console.log(data);
+          },function(){},datosUsuario.id,$scope.publicacion.id);
+        }
+      },function(){},datosUsuario.id);
+    }else{
+      $scope.login();
+    }
   };
   $scope.cotizar=function(){
     if(datosUsuario==undefined){
