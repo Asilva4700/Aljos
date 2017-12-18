@@ -74,11 +74,12 @@ var server_set_registrar = function($http,exito,error,correo,pass,rutUsu,numTel,
     direccion: direccion,
     nombre: nom,
     tipo: tipUsu,
-    nombreEmpresIngresara: nomEmp,
+    nombreEmpresa: nomEmp,
     rutEmpresa: rutEmp,
     paginaWeb: pagWeb,
     correoEmpresa: correoEmp
   };
+  console.log(request);
   make_post($http,request,exito,error,"Usuarios/registrar");
 };
 var server_get_calificaciones = function($http,exito,error,id){

@@ -29,7 +29,7 @@ app_controllers.controller('tabsCtrl', function($scope, $ionicPopup, $http, $sta
     myPopup.then(function(res) {
       if(res!=null){
         server_get_login($http,function(data){
-          console.log(data.data.data);
+          //console.log(data.data.data);
           $scope.resultado=data.data;
           datosUsuario = data.data.data;
           logeado = data.data.logeado;
