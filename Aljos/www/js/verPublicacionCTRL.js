@@ -3,6 +3,7 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
     try{
       var publicacion = JSON.parse($stateParams.data_publicacion);
       $scope.publicacion=publicacion;
+      console.log(publicacion);
       $scope.empresa=publicacion.idempresa;
       if(datosUsuario==undefined){
         $scope.usuario=0;
@@ -78,11 +79,14 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
       console.log(data);
     },function(){},datosUsuario.id,$scope.publicacion.id)
   };
-  $scope.cotizar=function(){
+  $scope.cotizar=function(publicacion){
     if(datosUsuario==undefined){
       $scope.login();
+      console.log(publicacion);
     }else{
-
+      server_set_cotizacion($http,function(data){
+        console.log(data);
+      },function(){},publicacion.empresa.id,publicacion.id,datosUsuario.id,publicacion.productoservicio.precio);
     }
   };
   $scope.ir_a=function(publicacion){

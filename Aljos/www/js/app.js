@@ -172,6 +172,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-ratings'])
         controller: 'agregarPublicacionCTRL'
       }
     }
+  })
+  .state('tab.pagos',{
+    url: '/pagos',
+    views:{
+      'tab-perfilUsuario':{
+        templateUrl:'templates/pagos.html',
+        controller: 'pagosCtrl'
+      }
+    }
+  })
+  .state('tab.cotizaciones',{
+    url: '/cotizaciones',
+    views:{
+      'tab-perfilUsuario':{
+        templateUrl:'templates/cotizaciones.html',
+        controller: 'cotizacionesCtrl'
+      }
+    }
+  })
+  .state('tab.detalleCotizacion',{
+    url: '/detalleCotizacion',
+    views:{
+      'tab-perfilUsuario':{
+        templateUrl:'templates/detalleCotizacion.html',
+        controller: 'detalleCotizacionCtrl'
+      }
+    }
   });
   //ng-if="logeado"
   // if none of the above states are matched, use this as the fallback

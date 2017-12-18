@@ -116,3 +116,12 @@ var server_get_favoritos = function($http,exito,error,idUsu){
   };
   make_post($http,request,exito,error,"Favoritos/Listar");
 };
+var server_set_cotizacion = function($http,exito,error,idEmp,idPub,idUsu,total){
+  var request = {
+    idEmpresa:idEmp,
+    idPublicacion:idPub,
+    idUsuario:idUsu,
+    total:total
+  };
+  make_post($http,request,exito,error,"Cotizacions/solicitar");
+};
