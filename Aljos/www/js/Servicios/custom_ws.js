@@ -122,14 +122,23 @@ var server_get_favoritos = function($http,exito,error,idUsu){
   };
   make_post($http,request,exito,error,"Favoritos/Listar");
 };
-var server_set_cotizacion = function($http,exito,error,idEmp,idPub,idUsu,total){
+var server_set_cotizacion = function($http,exito,error,idEmp,idPub,idUsu,idUsuEmp,total){
   var request = {
     idEmpresa:idEmp,
     idPublicacion:idPub,
     idUsuario:idUsu,
+    idUsuarioEmpresa:idUsuEmp,
     total:total
   };
   make_post($http,request,exito,error,"Cotizacions/solicitar");
+};
+var server_get_cotizaciones = function($http,exito,error,idUsu,idEmp,tipoUsu){
+  var request = {
+    idUsuario:idUsu,
+    idEmpresa:idEmp,
+    tipo:tipoUsu
+  };
+  make_post($http,request,exito,error,"Cotizacions/listar");
 };
 var server_get_pagos = function($http,exito,error,idusuario){
   var request={

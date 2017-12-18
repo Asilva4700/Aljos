@@ -5,6 +5,7 @@ app_controllers.controller('registrarseCtrl', function($scope, $http, $statePara
   $scope.empresa = false;
   $scope.vip = true;
   $scope.vipvide = true;
+  $scope.video = true;
   var tipoUsuario = 2;
   try{
     var algo = JSON.parse($stateParams.data_registro);
@@ -71,28 +72,44 @@ app_controllers.controller('registrarseCtrl', function($scope, $http, $statePara
   //informaciones
   $scope.informacion = function(){
     var alertPopup = $ionicPopup.alert({
-      template: 'El VIP aparecerá en los primeros lugares de la lista en la pantalla principal.<br>'+
-                'El VIPVide a parte de tener la misma ventaja que el VIP, este podra subir videos de sus '+
-                'productos o servicios a la aplicación.<br>'+
-                'Nota: ser VIP o VIPVide tendra un cargo adicional.'
+      title: 'Infomación',
+      template: 'El Video podra subir videos a la aplicación.<br>'+
+                'El VIP aparecerá en los primeros lugares de la lista en la pantalla principal.<br>'+
+                'El VIPVide tendra la misma cosas que los 2 anteriores.<br>'+
+                'Nota: ser usuario tipo Video, VIP o VIPVide tendra un cargo adicional.'
     });
   };
   //vip o vipvide
   $scope.tipoUsuVip = function(){
-    if($scope.vipvide){
+    if($scope.vipvide || $scope.video){
       $scope.vipvide = false;
+      $scope.video = false;
       tipoUsuario = 4;
     }else{
       $scope.vipvide = true;
+      $scope.video = true;
       tipoUsuario = 3;
     }
   };
   $scope.tipoUsuVipVide = function(){
-    if($scope.vip){
+    if($scope.vip || $scope.video){
       $scope.vip = false;
+      $scope.video = false;
       tipoUsuario = 5;
     }else{
       $scope.vip = true;
+      $scope.video = true;
+      tipoUsuario = 3;
+    }
+  };
+  $scope.tipoUsuVideo = function(){
+    if($scope.vip || $scope.vipvide){
+      $scope.vip = false;
+      $scope.vipvide = false;
+      tipoUsuario = 6;
+    }else{
+      $scope.vip = true;
+      $scope.vipvide = true;
       tipoUsuario = 3;
     }
   };

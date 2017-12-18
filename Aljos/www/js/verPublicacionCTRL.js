@@ -1,4 +1,4 @@
-app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHistory, $stateParams, $state) {
+app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHistory, $stateParams, $state, $ionicPopup) {
   $scope.$on("$ionicView.beforeEnter", function(event, data){
     try{
       var publicacion = JSON.parse($stateParams.data_publicacion);
@@ -140,7 +140,21 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
     }else{
       server_set_cotizacion($http,function(data){
         console.log(data);
-      },function(){},publicacion.empresa.id,publicacion.id,datosUsuario.id,publicacion.productoservicio.precio);
+        // aler con los datos
+        var fecha = new Date(publicacion.fecha);
+        publicacion.fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        var alertPopup = $ionicPopup.alert({
+          title: 'Cotizacion',
+          template: 'Producto: '+ publicacion.productoservicio.nombre +'<br>'+
+                    'Fecha: '+ publicacion.fecha +'<br>'+
+                    'Total: '+ publicacion.productoservicio.precio +'<br>'+
+                    'Descripcion '+ publicacion.descripcion +'<br>'+
+                    'Empresa: '+ publicacion.empresa.nombre +'<br>'+
+                    ' Correo: '+ publicacion.empresa.correo +'<br>'+
+                    ' Pagina Web: '+ publicacion.empresa.paginaweb +'<br>'+
+                    'Nota: Si quieres volver a ver esta cotizacion, ve a tu perfil de usuario en el apartado de cotizaciones.'
+          });
+      },function(){},publicacion.empresa.id,publicacion.id,datosUsuario.id,publicacion.empresa.idusuario,publicacion.productoservicio.precio);
     }
   };
   $scope.ir_a=function(publicacion){

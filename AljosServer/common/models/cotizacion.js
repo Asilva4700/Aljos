@@ -68,6 +68,7 @@ module.exports = function(Cotizacion) {
             ]
           }
         }},function(error,obj){
+          console.log(error);
           if(error){cb(null,{ok:false,data:error});}
           else{
             cb(null,{ok:true,data:obj,tipo});

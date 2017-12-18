@@ -1,5 +1,12 @@
 <ion-view view-title="Cotizaciones">
   <ion-content>
-    <h2>Cotizaciones</h2>
+    <div class="list" ng-repeat="cotizacion in cotizaciones">
+      <a class="item item-thumbnail-left" ng-click="irDetalle(cotizacion)">
+        <img src="../img/imagen-de-prueba.jpg">
+        <h2>{{cotizacion.publicacion.productoservicio.nombre}}</h2>
+        <p>{{cotizacion.publicacion.descripcion}}<br></p>
+        <p>${{cotizacion.publicacion.productoservicio.precio}}</p>
+      </a>
+    </div>
   </ion-content>
 </ion-view>

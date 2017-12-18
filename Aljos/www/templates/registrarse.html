@@ -47,6 +47,7 @@
           </label>
           <h2 ng-if="empresa">¿Quieres ser...?</h2>
           <div ng-if="empresa">
+            <ion-checkbox  ng-click="tipoUsuVideo()" ng-if="video">Video</ion-checkbox> 
             <ion-checkbox  ng-click="tipoUsuVip()" ng-if="vip">VIP</ion-checkbox>
             <ion-checkbox  ng-click="tipoUsuVipVide()" ng-if="vipvide">VIPVide</ion-checkbox>
           </div>
