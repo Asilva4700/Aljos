@@ -1,6 +1,6 @@
 <ion-view view-title="Home">
   <ion-content class="padding">
-    <ion-header>
+      <ion-header>
       <!--Searchbar-->
       <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
@@ -13,13 +13,13 @@
       </div>
       <br>
       <!--Filtros-->
-      <div class="button-bar">
-        Filtros:
-        <a class="button">Nombre</a>
-        <a class="button">Calificación</a>
-        <a class="button">Precio</a>
-        <a class="button">Tipo</a>
-      </div>
+          <div class="botondiv">
+                    <a class="button boton">Nombre</a>
+                    <a class="button boton">Calificación</a>
+                    <a class="button boton">Precio</a>
+                    <a class="button boton">Tipo</a>
+          </div>
+      </ion-slide-box>
     </ion-header>
     <!--Slide box for top 10 vip-->
     <ion-slide-box on-slide-changed="slideHasChanged($index)">
