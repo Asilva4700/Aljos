@@ -37,15 +37,17 @@
         Preguntas generales
         <ion-nav-view name="tab-preguntasGenerales"></ion-nav-view>
       </a>
-      <a class="button button-icon icon ion-android-favorite" ng-click="irFavoritos()">
-        Favoritos
-        <ion-nav-view name="tab-favoritos"></ion-nav-view>
-      </a>
-      <a class="button button-icon icon ion-cash" ng-click="irPagos()">
-        Pagos
-        <ion-nav-view name="tab-pagos"></ion-nav-view>
-      </a>
-      <a class="button button-icon icon ion-bag" ng-click="irCotizaciones()">
+      <div class="button-bar">
+        <a class="button button-icon icon ion-android-favorite" ng-click="irFavoritos()">
+          Favoritos
+          <ion-nav-view name="tab-favoritos"></ion-nav-view>
+        </a>
+        <a class="button button-icon icon ion-cash" ng-click="irPagos()">
+          Pagos
+          <ion-nav-view name="tab-pagos"></ion-nav-view>
+        </a>
+      </div>
+      <a class="button button-block button-icon icon ion-bag" ng-click="irCotizaciones()">
         Cotizaciones
         <ion-nav-view name="tab-cotizaciones"></ion-nav-view>
       </a>

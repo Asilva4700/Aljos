@@ -131,3 +131,9 @@ var server_set_cotizacion = function($http,exito,error,idEmp,idPub,idUsu,total){
   };
   make_post($http,request,exito,error,"Cotizacions/solicitar");
 };
+var server_get_pagos = function($http,exito,error,idusuario){
+  var request={
+    idusuario:idusuario
+  };
+  make_post($http,request,exito,error,"Pagos/Listar");
+}

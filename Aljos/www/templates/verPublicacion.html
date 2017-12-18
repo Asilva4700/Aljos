@@ -43,14 +43,12 @@
           </form>
         </div>
         <div class="list card" ng-repeat='calificacion in calificaciones'>
-          <div class="item item-body">
-            <p class="item item-divider">{{calificacion.usuario.nombre}}</p>
-            <p>{{calificacion.fecha}}</p>
-            <p class="item item-text-wrap">{{calificacion.calificacion}}
-              <ion-icon icon-on="ion-ios-star" name="star"></ion-icon><br/>
-              {{calificacion.descripcion}}
-            </p>
-        </div>
+          <p class="item item-divider">{{calificacion.usuario.nombre}}</p>
+          <p>{{calificacion.fecha}}</p>
+          <p class="item item-text-wrap">{{calificacion.calificacion}}
+            <ion-icon icon-on="ion-ios-star" name="star"></ion-icon><br/>
+            {{calificacion.descripcion}}
+          </p>
       </div>
     </div>
   </ion-content>

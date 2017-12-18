@@ -1,5 +1,12 @@
 <ion-view view-title="Pagos">
   <ion-content>
-    <h2>Pagos</h2>
+    <div class="list card" ng-repeat='pago in pagos'>
+        <p class="item item-divider">{{pago.cotizacion.publicacion.productoservicio.nombre}}</p>
+        <p>{{pago.cotizacion.fecha}}</p>
+        <p class="item item-divider">Estado: {{pago.estado}}</p>
+        <p class="item item-text-wrap">
+          Total: {{pago.cotizacion.total}}
+        </p>
+  </div>
   </ion-content>
 </ion-view>

@@ -8,7 +8,28 @@ module.exports = function(Pago) {
         scope:{}
       },{
         relation:"cotizacion",
-        scope:{}
+        scope:{include:{
+          relation:"publicacion",
+          scope:{
+            include:[
+              {
+                relation:'productoservicio',
+                scope:{
+                  include:['local']
+                }
+              },{
+                relation:'empresa',
+                scope:{}
+              },{
+                relation:'imagen',
+                scope:{}
+              },{
+                relation:'calificacion',
+                scope:{}
+              }
+            ]
+          }
+        }}
       }
     ]},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}

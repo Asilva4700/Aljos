@@ -5,7 +5,7 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
       $scope.publicacion=publicacion;
       console.log(publicacion);
       $scope.empresa=publicacion.idempresa;
-      if(datosUsuario==undefined){
+      if(datosUsuario.empresa==undefined){
         $scope.usuario=0;
       }else{
         $scope.usuario=datosUsuario.empresa.id;
