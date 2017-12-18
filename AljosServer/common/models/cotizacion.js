@@ -45,14 +45,56 @@ module.exports = function(Cotizacion) {
       cb(null,{ok:false,data:"Al menos 1 campo debe tener un valor"});
     }else{
       if(tipo==2){
-        Cotizacion.find({where:{idusuario:idusuario}},function(error,obj){
+        Cotizacion.find({where:{idusuario:idusuario},include:{
+          relation:"publicacion",
+          scope:{
+            include:[
+              {
+                relation:'productoservicio',
+                scope:{
+                  include:['local']
+                }
+              },{
+                relation:'empresa',
+                scope:{}
+              },{
+                relation:'imagen',
+                scope:{}
+              },{
+                relation:'calificacion',
+                scope:{}
+              }
+            ]
+          }
+        }},function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
           else{
             cb(null,{ok:true,data:obj,tipo});
           }
         });
       }else if(tipo!=2 && tipo!=1){
-        Cotizacion.find({where:{idempresa:idempresa}},function(error,obj){
+        Cotizacion.find({where:{idempresa:idempresa},include:{
+          relation:"publicacion",
+          scope:{
+            include:[
+              {
+                relation:'productoservicio',
+                scope:{
+                  include:['local']
+                }
+              },{
+                relation:'empresa',
+                scope:{}
+              },{
+                relation:'imagen',
+                scope:{}
+              },{
+                relation:'calificacion',
+                scope:{}
+              }
+            ]
+          }
+        }},function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
           else{
             cb(null,{ok:true,data:obj,tipo});
