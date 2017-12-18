@@ -1,1 +1,4 @@
 /* Empty. Add your own CSS if you like */
+.ionic_ratings .read_only {
+    pointer-events:none !important;
+  }

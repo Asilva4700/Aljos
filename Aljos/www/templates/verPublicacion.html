@@ -44,11 +44,9 @@
         </div>
         <div class="list card" ng-repeat='calificacion in calificaciones'>
           <p class="item item-divider">{{calificacion.usuario.nombre}}</p>
-          <p>{{calificacion.fecha}}</p>
-          <p class="item item-text-wrap">{{calificacion.calificacion}}
-            <ion-icon icon-on="ion-ios-star" name="star"></ion-icon><br/>
-            {{calificacion.descripcion}}
-          </p>
+          <p class="item item-text-wrap">{{calificacion.fecha}}</p>
+          <p class="item item-divider"><ionic-ratings style="font-size:30px;" ratingsobj='calificacion.estrellas'></ionic-ratings></p>
+          <p class="item item-text-wrap">{{calificacion.descripcion}}</p>
       </div>
     </div>
   </ion-content>

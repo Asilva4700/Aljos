@@ -137,3 +137,9 @@ var server_get_pagos = function($http,exito,error,idusuario){
   };
   make_post($http,request,exito,error,"Pagos/Listar");
 }
+var server_set_pagos = function($http,exito,error,id){
+  var request={
+    id:id
+  };
+  make_post($http,request,exito,error,"Pagos/CambiarEstado");
+};
