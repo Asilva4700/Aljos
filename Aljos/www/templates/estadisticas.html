@@ -1,5 +1,15 @@
 <ion-view view-title="Estadistica">
   <ion-content class="padding">
-    <h2>Estadisticas</h2>
+    <div ng-repeat="publicacion in publicaciones">
+      Publicacion: {{publicacion.productoservicio.nombre}}
+      <br/>
+      <canvas id="{{$index}}" width="400" height="400"></canvas>
+      {{CalcularVisita(publicacion.visita,$index);}}
+    </div>
+    <div>
+      Cantidad de favoritos por publicación
+      <br/>
+      <canvas id="fav" width: 100% !important; height="400"></canvas>
+    </div>
   </ion-content>
 </ion-view>

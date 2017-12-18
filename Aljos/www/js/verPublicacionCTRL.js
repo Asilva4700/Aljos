@@ -11,6 +11,9 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
         }else{
           $scope.usuario=datosUsuario.empresa.id;
         }
+        server_set_visita($http,function(data){
+          console.log(data);
+        },function(){},publicacion.id,datosUsuario.id);
       }
     }catch(e){
       console.log(e);

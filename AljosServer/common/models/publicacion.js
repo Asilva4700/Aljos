@@ -139,6 +139,12 @@ module.exports = function(Publicacion) {
       },{
         relation:'calificacion',
         scope:{}
+      },{
+        relation:'visita',
+        scope:{}
+      },{
+        relation:'favorito',
+        scope:{}
       }
     ]},function(error,obj){
       if(error){cb(null,{ok:false,data:error});}

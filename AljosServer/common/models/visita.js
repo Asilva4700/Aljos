@@ -2,42 +2,50 @@
 
 module.exports = function(Visita) {
   Visita.ingreso=function(idPublicacion, idUsuario,cb){
-    var fecha = new Date();
-    fecha=fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate();
-    console.log(fecha);
-    Visita.findOne({where:{and:[{fecha:fecha},{idusuario:idUsuario},{idpublicacion:idPublicacion}]}},function(error,obj){
-      if(error){cb(null,{ok:false,data:error});}
-      else{
-        var data=obj;
-        if(data==null){
-          var visita={
-            idpublicacion:idPublicacion,
-            idusuario:idUsuario,
-            cantidad:1,
-            fecha:fecha
-          };
-          Visita.create(visita,function(error,obj){
-            if(error){cb(null,{ok:false,data:error});}
-            else{
-              cb(null,{ok:true,data:obj});
-            }
-          });
-        }else{
-          var cantidad=data.cantidad+1;
-          Visita.updateAll({id:data.id},{cantidad:cantidad},function(error,obj){
-            if(error){cb(null,{ok:false,data:error});}
-            else{
-              cb(null,{ok:true,data:obj});
-            }
-          });
+    if(!idUsuario){
+      Visita.find({where:{idpublicacion:idPublicacion}},function(error,obj){
+        if(error){cb(null,{ok:false,data:error});}
+        else{
+          cb(null,{ok:true,data:obj});
         }
-      }
-    });
+      });
+    }else{
+      var fecha = new Date();
+      fecha=fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate();
+      Visita.findOne({where:{and:[{fecha:fecha},{idusuario:idUsuario},{idpublicacion:idPublicacion}]}},function(error,obj){
+        if(error){cb(null,{ok:false,data:error});}
+        else{
+          var data=obj;
+          if(data==null){
+            var visita={
+              idpublicacion:idPublicacion,
+              idusuario:idUsuario,
+              cantidad:1,
+              fecha:fecha
+            };
+            Visita.create(visita,function(error,obj){
+              if(error){cb(null,{ok:false,data:error});}
+              else{
+                cb(null,{ok:true,data:obj});
+              }
+            });
+          }else{
+            var cantidad=data.cantidad+1;
+            Visita.updateAll({id:data.id},{cantidad:cantidad},function(error,obj){
+              if(error){cb(null,{ok:false,data:error});}
+              else{
+                cb(null,{ok:true,data:obj});
+              }
+            });
+          }
+        }
+      });
+    }
   }
   Visita.remoteMethod('ingreso',{
     accepts:[
       {arg: 'idPublicacion', type: 'number', required: true},
-      {arg: 'IdUsuario', type: 'number', required: true}
+      {arg: 'IdUsuario', type: 'number', required: false}
     ],
     returns: {arg: 'data', type: 'object'}
   });

@@ -145,10 +145,23 @@ var server_get_pagos = function($http,exito,error,idusuario){
     idusuario:idusuario
   };
   make_post($http,request,exito,error,"Pagos/Listar");
-}
+};
 var server_set_pagos = function($http,exito,error,id){
   var request={
     id:id
   };
   make_post($http,request,exito,error,"Pagos/CambiarEstado");
+};
+var server_set_visita = function($http,exito,error,idpublicacion,idusuario){
+  var request={
+    idPublicacion:idpublicacion,
+    IdUsuario:idusuario
+  };
+  make_post($http,request,exito,error,"Visita/ingreso");
+};
+var server_get_visita = function($http,exito,error,idpublicacion){
+  var request={
+    idPublicacion:idpublicacion
+  };
+  make_post($http,request,exito,error,"Visita/ingreso");
 };

@@ -129,6 +129,16 @@
       "type": "hasMany",
       "model": "Calificacion",
       "foreignKey": "idpublicacion"
+    },
+    "visita": {
+      "type": "hasMany",
+      "model": "Visita",
+      "foreignKey": "idpublicacion"
+    },
+    "favorito": {
+      "type": "hasMany",
+      "model": "Favorito",
+      "foreignKey": "idpublicacion"
     }
   },
   "acls": [],
