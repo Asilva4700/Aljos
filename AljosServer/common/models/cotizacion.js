@@ -2,7 +2,7 @@
 
 module.exports = function(Cotizacion) {
   var app = require('../../server/server');
-  Cotizacion.solicitar = function(idEmpresa, idPublicacion, idUsuario, total, cb){
+  Cotizacion.solicitar = function(idEmpresa, idPublicacion, idUsuario, idUsuarioEmpresa, total, cb){
     var fecha = new Date();
     var cotizacion={
       idempresa:idEmpresa,
@@ -20,7 +20,7 @@ module.exports = function(Cotizacion) {
         var pago={
           idcotizacion:dataCotizacion.id,
           estado:"Pendiente",
-          idusuario:idUsuario
+          idusuario:idUsuarioEmpresa
         };
         Pago.create(pago,function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
@@ -36,6 +36,7 @@ module.exports = function(Cotizacion) {
       {arg: 'idEmpresa', type: 'number', required: true},
       {arg: 'idPublicacion', type: 'number', required: true},
       {arg: 'idUsuario', type: 'number', required: true},
+      {arg: 'idUsuarioEmpresa', type: 'number', required: true},
       {arg: 'total', type: 'number', required: true}
     ],
     returns: {arg: 'data', type: 'object'}
