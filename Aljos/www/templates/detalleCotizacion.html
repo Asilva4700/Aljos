@@ -1,12 +1,20 @@
 <ion-view view-title="Detalle">
   <ion-content>
-    <h2>Detalle</h2>
-    Nombre: {{cotizacion.publicacion.productoservicio.nombre}}<br>
+    <h2>{{cotizacion.publicacion.productoservicio.nombre}}</h2>
     Fecha: {{cotizacion.fecha}}<br>
     Total: ${{cotizacion.total}}<br>
     Descripcion: {{cotizacion.publicacion.descripcion}}<br><br>
-    Empresa: {{cotizacion.publicacion.empresa.nombre}}<br>
-    Correo: {{cotizacion.publicacion.empresa.correo}}<br>
-    Pagina Web: {{cotizacion.publicacion.empresa.paginaweb}}<br>
+    <div ng-if="usuario.idtipousuario == 1 || usuario.idtipousuario == 2">
+      Empresa: {{cotizacion.publicacion.empresa.nombre}}<br>
+      Rut: {{cotizacion.publicacion.empresa.rut}}<br>
+      Correo: {{cotizacion.publicacion.empresa.correo}}<br>
+      Pagina Web: {{cotizacion.publicacion.empresa.paginaweb}}<br>
+    </div>
+    <div ng-if="usuario.idtipousuario != 1 && usuario.idtipousuario != 2">
+      Nombre: {{cotizacion.usuario.nombre}}<br>
+      Rut: {{cotizacion.usuario.rut}}<br>
+      Correo: {{cotizacion.usuario.correo}}<br>
+      N°Telefonico: {{cotizacion.usuario.numerotelefono}}<br>
+    </div>
   </ion-content>
 </ion-view>

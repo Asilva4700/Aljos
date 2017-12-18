@@ -8,7 +8,7 @@ app_controllers.controller('pagosCtrl', function($scope, $http) {
       var fecha, total;
       for(var i=0;i<$scope.pagos.length;i++){
         fecha = new Date($scope.pagos[i].cotizacion.fecha);
-        $scope.pagos[i].cotizacion.fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        $scope.pagos[i].cotizacion.fecha=(fecha.getDate()+1)+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
         total=$scope.pagos[i].cotizacion.total;
         if($scope.pagos[i].usuario.idtipousuario==3){
           $scope.pagos[i].cotizacion.total=Math.round(total*0.05);
@@ -28,7 +28,7 @@ app_controllers.controller('pagosCtrl', function($scope, $http) {
       var fecha, total;
       for(var i=0;i<$scope.pagos.length;i++){
         fecha = new Date($scope.pagos[i].cotizacion.fecha);
-        $scope.pagos[i].cotizacion.fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        $scope.pagos[i].cotizacion.fecha=(fecha.getDate()+1)+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
         total=$scope.pagos[i].cotizacion.total;
         if($scope.pagos[i].usuario.idtipousuario==3){
           $scope.pagos[i].cotizacion.total=Math.round(total*0.05);
@@ -49,7 +49,7 @@ app_controllers.controller('pagosCtrl', function($scope, $http) {
       var fecha, total;
       for(var i=0;i<$scope.pagos.length;i++){
         fecha = new Date($scope.pagos[i].cotizacion.fecha);
-        $scope.pagos[i].cotizacion.fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        $scope.pagos[i].cotizacion.fecha=(fecha.getDate()+1)+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
         total=$scope.pagos[i].cotizacion.total;
         if($scope.pagos[i].usuario.idtipousuario==3){
           $scope.pagos[i].cotizacion.total=Math.round(total*0.05);

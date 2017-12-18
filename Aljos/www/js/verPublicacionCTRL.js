@@ -20,7 +20,7 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
       $scope.calificaciones=data.data.data;
       for(var i=0;i<$scope.calificaciones.length;i++){
         var fecha = new Date($scope.calificaciones[i].fecha);
-        $scope.calificaciones[i].fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        $scope.calificaciones[i].fecha=(fecha.getDate()+1)+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
         $scope.calificaciones[i].estrellas = {
           iconOn : 'ion-ios-star',
           iconOff : 'ion-ios-star-outline',
@@ -64,7 +64,7 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
       $scope.calificaciones=data.data.data;
       for(var i=0;i<$scope.calificaciones.length;i++){
         var fecha = new Date($scope.calificaciones[i].fecha);
-        $scope.calificaciones[i].fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        $scope.calificaciones[i].fecha=(fecha.getDate()+1)+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
       }
     },function(){},publicacion.id);
   };
@@ -142,7 +142,7 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
         console.log(data);
         // aler con los datos
         var fecha = new Date(publicacion.fecha);
-        publicacion.fecha=fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
+        publicacion.fecha=(fecha.getDate()+1)+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
         var alertPopup = $ionicPopup.alert({
           title: 'Cotizacion',
           template: 'Producto: '+ publicacion.productoservicio.nombre +'<br>'+
