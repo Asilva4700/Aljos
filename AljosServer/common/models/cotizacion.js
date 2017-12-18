@@ -68,13 +68,14 @@ module.exports = function(Cotizacion) {
             ]
           }
         }},function(error,obj){
+          console.log(error);
           if(error){cb(null,{ok:false,data:error});}
           else{
             cb(null,{ok:true,data:obj,tipo});
           }
         });
       }else if(tipo!=2 && tipo!=1){
-        Cotizacion.find({where:{idempresa:idempresa},include:{
+        Cotizacion.find({where:{idempresa:idempresa},include:[{
           relation:"publicacion",
           scope:{
             include:[
@@ -95,7 +96,10 @@ module.exports = function(Cotizacion) {
               }
             ]
           }
-        }},function(error,obj){
+        },{
+          relation:'usuario',
+          scope:{}
+        }]},function(error,obj){
           if(error){cb(null,{ok:false,data:error});}
           else{
             cb(null,{ok:true,data:obj,tipo});

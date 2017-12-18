@@ -192,7 +192,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-ratings'])
     }
   })
   .state('tab.detalleCotizacion',{
-    url: '/detalleCotizacion',
+    url: '/detalleCotizacion/:data_cotizacion?',
     views:{
       'tab-perfilUsuario':{
         templateUrl:'templates/detalleCotizacion.html',

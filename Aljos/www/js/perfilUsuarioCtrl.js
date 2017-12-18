@@ -34,4 +34,8 @@ app_controllers.controller('perfilUsuarioCtrl', function($scope, $http, $state) 
   $scope.irPagos = function() {
     $state.go('tab.pagos',{});
   };
+  //ir a cotizaciones
+  $scope.irCotizaciones = function() {
+    $state.go('tab.cotizaciones',{});
+  };
 });

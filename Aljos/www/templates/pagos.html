@@ -2,11 +2,14 @@
   <ion-content>
     <div class="list card" ng-repeat='pago in pagos'>
         <p class="item item-divider">{{pago.cotizacion.publicacion.productoservicio.nombre}}</p>
-        <p>{{pago.cotizacion.fecha}}</p>
+        <p class="item item-text-wrap">{{pago.cotizacion.fecha}}</p>
         <p class="item item-divider">Estado: {{pago.estado}}</p>
         <p class="item item-text-wrap">
           Total: {{pago.cotizacion.total}}
         </p>
+        <button ng-click="cambiarEstado(pago)" ng-show="tipoUsuario" class="button button-block button-positive">
+          Cambiar estado
+        </button>
   </div>
   </ion-content>
 </ion-view>
