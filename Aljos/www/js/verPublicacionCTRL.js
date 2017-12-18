@@ -39,22 +39,22 @@ app_controllers.controller('verPublicacionCTRL', function($scope, $http,$ionicHi
     },function(){},publicacion.id);
   });
   $scope.listImg = [{
-    ruta:"../img/adam.jpg"
+    ruta:"../img/tortas.jpg"
   },
   {
-    ruta:"../img/ben.png"
+    ruta:"../img/noticia_normal.jpg"
   },
   {
-    ruta:"../img/ionic.png"
+    ruta:"../img/eventos-gastronomicos.jpg"
   },
   {
-    ruta:"../img/max.png"
+    ruta:"../img/carrito-de-cabritas.jpg"
   },
   {
-    ruta:"../img/mike.png"
+    ruta:"../img/carpas-teran-slider-01.jpg"
   },
   {
-    ruta:"../img/perry.png"
+    ruta:"../img/377904_4606680724559_35582165_n.jpg"
   }];
   refresh=function(){
     if(datosUsuario.empresa!=undefined){

@@ -1,8 +1,13 @@
 <ion-view view-title="">
   <ion-content class="padding">
     <ion-header>
-      <h2>{{publicacion.productoservicio.nombre}}</h2>
-      <h5>{{publicacion.empresa.nombre}} <button ng-click="agregar(publicacion)" class="button icon-left ion-star button-positive">Favoritos</button></h5>
+      <div class="row">
+        <div class="col"><h2>{{publicacion.productoservicio.nombre}}</h2></div>
+      </div>
+      <div class="row">
+        <div class="col"><h5>{{publicacion.empresa.nombre}}</div>
+        <div class="col"><button ng-click="agregar(publicacion)" class="button icon-left ion-star button-positive">Favoritos</button></h5></div>
+      </div>
     </ion-header>
     <ion-slide-box on-slide-changed="slideHasChanged($index)">
       <ion-slide ng-repeat='img in listImg'>
@@ -11,8 +16,8 @@
         </div>
       </ion-slide>
     </ion-slide-box>
-    <p>${{publicacion.productoservicio.precio}}</p>
-    <p>{{publicacion.descripcion}}</p>
+    <h3>Precio: ${{publicacion.productoservicio.precio}}</h3>
+    <p>Descripcion: {{publicacion.descripcion}}</p>
     <div ng-if="publicacion.productoservicio.idlocal">
       <p>Direccion: {{publicacion.productoservicio.local.direccion}} {{publicacion.productoservicio.local.numeracion}}</p>
       <p>Ciudad: {{publicacion.productoservicio.local.ciudad}}</p>
